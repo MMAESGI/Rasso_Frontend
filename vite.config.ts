@@ -10,7 +10,7 @@ import Components from 'unplugin-vue-components/vite'
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    allowedHosts: ['sandbox.sunlamander.tech'],
+    allowedHosts: ['sandbox.sunlamander.tech', 'prod.sunlamander.tech'],
   },
   plugins: [
     vue(),
