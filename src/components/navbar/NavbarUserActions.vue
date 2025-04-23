@@ -1,60 +1,51 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue';
-import IconTooling from '../icons/IconTooling.vue';
+import { ref, useTemplateRef } from 'vue'
+import { Button } from 'primevue'
 
-const menu = useTemplateRef("menu")
+const menu = useTemplateRef('menu')
 const items = ref([
-    {
-        items: [
-            {
-                label: 'Login',
-                icon: 'pi pi-login'
-            },
-            {
-                label: 'Register',
-                icon: 'pi pi-register'
-            }
-        ]
-    }
+  {
+    items: [
+      {
+        label: 'Login',
+        icon: 'pi pi-user',
+      },
+      {
+        label: 'Register',
+        icon: 'pi pi-user',
+      },
+    ],
+  },
 ])
-function toggle(event : Event){
+function toggle(event: Event) {
   menu.value?.toggle(event)
 }
-
 </script>
 
 <template>
   <div class="navbar-user-actions">
-    <span>FR</span>
-    <span><IconTooling /></span>
-    <span @click="toggle"><IconTooling /></span>
-    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true"/> 
+    <Button icon="pi pi-flag" variant="outlined" />
+    <Button icon="pi pi-heart" variant="outlined" />
+    <Button icon="pi pi-user" variant="outlined" @click="toggle" />
+    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
   </div>
 </template>
 
 <style scoped>
 .navbar-user-actions {
-    display: flex;
-}
-
-.navbar-user-actions > * {
-  padding: 0 5px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+button {
+  margin: 0 2%;
 }
 
-.navbar-user-actions > span:not(:last-child) {
-    border-right: 1px solid grey;
+.navbar-user-actions button:hover {
+  border-color: var(--p-button-primary-hover-background);
 }
 </style>
 
 <style>
-#overlay_menu{
-  background-color: white;
-  padding: 7px;
-  border : 1px solid grey;
-  border-radius: 10px;
-  --p-menu-item-padding: 5px;
+#overlay_menu {
+  --p-menu-submenu-label-padding: 0;
 }
 </style>

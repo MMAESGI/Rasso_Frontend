@@ -1,30 +1,41 @@
 <script setup lang="ts">
-import IconTooling from '../icons/IconTooling.vue';
-
+import { Button, ButtonGroup } from 'primevue'
 </script>
 
 <template>
   <div class="navbar-actions">
-    <span><IconTooling />Paris</span>
-    <span><IconTooling />Catégories</span>
-    <span><IconTooling />Carte</span>
+    <span class="location-changer"><i class="pi pi-map-marker"></i> Paris</span>
+    <ButtonGroup>
+      <Button label="Catégories" icon="pi pi-book" variant="outlined" />
+      <Button label="Carte" icon="pi pi-map" variant="outlined" />
+    </ButtonGroup>
   </div>
 </template>
 
 <style scoped>
 .navbar-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.navbar-actions > span {
-  padding: 0 3%;
+.location-changer {
+  padding: 0 8% 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  i {
+    padding-right: 3px;
+  }
 }
-.navbar-actions > span:not(:last-child) {
-    border-right: 1px solid grey;
+
+.navbar-actions button:not(:last-child) {
+  border-inline-end: 1px solid transparent !important;
+}
+
+.navbar-actions button:hover {
+  border-color: var(--p-button-primary-hover-background);
+  border-inline-end: 1px solid black !important;
 }
 </style>

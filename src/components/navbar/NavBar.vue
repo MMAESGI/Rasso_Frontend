@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import NavbarActions from './NavbarActions.vue';
-import NavbarLogo from './NavbarLogo.vue';
-import NavbarSearch from './NavbarSearch.vue';
-import NavbarUserActions from './NavbarUserActions.vue';
-
-
+import NavbarActions from './NavbarActions.vue'
+import NavbarLogo from './NavbarLogo.vue'
+import NavbarSearch from './NavbarSearch.vue'
+import NavbarUserActions from './NavbarUserActions.vue'
 </script>
 
 <template>
@@ -34,11 +32,11 @@ h3 {
 }
 
 .navbar {
-    margin: 1% 20%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: auto;
+  margin: 1% 17%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: auto;
 }
 
 @media (min-width: 1024px) {
