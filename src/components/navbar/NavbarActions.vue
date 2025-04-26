@@ -1,10 +1,32 @@
 <script setup lang="ts">
+import { reverseGeocode } from '@/services/geolocation';
 import { Button, ButtonGroup } from 'primevue'
+import { onMounted, ref } from 'vue';
+
+const city = ref("");
+
+onMounted(() => {
+  getLocation()
+})
+
+function getLocation(){
+  navigator.geolocation.getCurrentPosition(getLocationName);
+}
+
+async function getLocationName(pos : GeolocationPosition){
+  const res = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
+  if (res.error != undefined){
+    city.value = "";
+    return;
+  } 
+  city.value = res.address.city ?? res.address.town ?? res.address.municipality ?? res.address.country ?? "";
+}
+
 </script>
 
 <template>
   <div class="navbar-actions">
-    <span class="location-changer"><i class="pi pi-map-marker"></i> Paris</span>
+    <span class="location-display" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
     <ButtonGroup>
       <Button label="Catégories" icon="pi pi-book" variant="outlined" />
       <Button label="Carte" icon="pi pi-map" variant="outlined" />
@@ -19,7 +41,7 @@ import { Button, ButtonGroup } from 'primevue'
   justify-content: space-between;
 }
 
-.location-changer {
+.location-display {
   padding: 0 8% 0 0;
   display: flex;
   justify-content: center;
