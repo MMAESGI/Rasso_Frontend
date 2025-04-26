@@ -28,7 +28,6 @@ async function getLocationName(pos : GeolocationPosition){
   <div class="navbar-actions">
     <span class="location-display" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
     <ButtonGroup>
-      <Button label="Catégories" icon="pi pi-book" variant="outlined" />
       <Button label="Carte" icon="pi pi-map" variant="outlined" />
     </ButtonGroup>
   </div>
