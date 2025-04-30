@@ -1,32 +1,11 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
-
-const menu = useTemplateRef('menu')
-const items = ref([
-  {
-    items: [
-      {
-        label: 'Login',
-        icon: 'pi pi-user',
-      },
-      {
-        label: 'Register',
-        icon: 'pi pi-user',
-      },
-    ],
-  },
-])
-function toggle(event: Event) {
-  menu.value?.toggle(event)
-}
 </script>
 
 <template>
   <div class="navbar-user-actions">
     <span><i class="pi pi-globe"></i></span>
     <span><i class="pi pi-heart"></i></span>
-    <span @click="toggle"><i class="pi pi-user"></i></span>
-    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
+    <span><i class="pi pi-user"></i></span>
   </div>
 </template>
 

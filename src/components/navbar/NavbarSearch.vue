@@ -18,7 +18,7 @@ import InputText from 'primevue/inputtext'
 
 <style scoped>
 .navbar-search {
-  width: 25vw;
+  min-width: 25vw;
   
   input {
     border-radius: 20px;

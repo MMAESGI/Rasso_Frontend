@@ -3,7 +3,7 @@
 <template>
   <div class="herobanner">
     <span class="herotitle">Evenement de quelque chose</span>
-    <span class="herotext"
+    <span class="herotext "
       >Texte sur la herobanner qui est censé représenter un évenement ou un truc du genre</span
     >
   </div>
