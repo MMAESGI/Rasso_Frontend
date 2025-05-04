@@ -1,60 +1,66 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue';
-import IconTooling from '../icons/IconTooling.vue';
 
-const menu = useTemplateRef("menu")
+const languageMenu = useTemplateRef('languageMenu');
+const selectedLang = ref("EN");
 const items = ref([
-    {
-        items: [
-            {
-                label: 'Login',
-                icon: 'pi pi-login'
-            },
-            {
-                label: 'Register',
-                icon: 'pi pi-register'
-            }
-        ]
-    }
+  {
+    items: [
+      {
+        label: "🇫🇷 Français",
+        command: () => {selectedLang.value = "FR"}
+      },
+      {
+        label: "🇬🇧 English",
+        command: () => {selectedLang.value = "EN"}
+      },
+    ]
+  }
 ])
-function toggle(event : Event){
-  menu.value?.toggle(event)
-}
 
+
+function openLanguageMenu(event: Event) {
+  languageMenu.value?.toggle(event)
+}
 </script>
 
 <template>
   <div class="navbar-user-actions">
-    <span>FR</span>
-    <span><IconTooling /></span>
-    <span @click="toggle"><IconTooling /></span>
-    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true"/> 
+    <span @click="openLanguageMenu" class="flex items-center px-2"><i class="pi pi-globe" style="padding: 9px 6px;"></i>{{ selectedLang }}</span>
+    <span><i class="pi pi-heart"></i></span>
+    <span><i class="pi pi-user"></i></span>
+    <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true">  
+    </Menu>
   </div>
 </template>
 
 <style scoped>
 .navbar-user-actions {
-    display: flex;
-}
-
-.navbar-user-actions > * {
-  padding: 0 5px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-.navbar-user-actions > span:not(:last-child) {
-    border-right: 1px solid grey;
+.navbar-user-actions button:hover {
+  border-color: var(--p-button-primary-hover-background);
+}
+
+i {
+  font-size: 1.25rem;
+  padding: 9px 12px
+}
+
+span:not(:last-child) {
+  border-image: linear-gradient(180deg,rgba(255, 255, 255, 1) 0%, rgb(175, 175, 175) 50%, rgba(255, 255, 255, 1) 100%) 1 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-left: 0;
+  border-top: 0;
+  border-bottom: 0;
 }
 </style>
 
 <style>
-#overlay_menu{
-  background-color: white;
-  padding: 7px;
-  border : 1px solid grey;
-  border-radius: 10px;
-  --p-menu-item-padding: 5px;
+#overlay_menu {
+  --p-menu-submenu-label-padding: 0;
 }
 </style>
