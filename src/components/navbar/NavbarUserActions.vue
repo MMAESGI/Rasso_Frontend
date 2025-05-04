@@ -1,11 +1,36 @@
 <script setup lang="ts">
+import { ref, useTemplateRef } from 'vue';
+
+const languageMenu = useTemplateRef('languageMenu');
+const selectedLang = ref("EN");
+const items = ref([
+  {
+    items: [
+      {
+        label: "🇫🇷 Français",
+        command: () => {selectedLang.value = "FR"}
+      },
+      {
+        label: "🇬🇧 English",
+        command: () => {selectedLang.value = "EN"}
+      },
+    ]
+  }
+])
+
+
+function openLanguageMenu(event: Event) {
+  languageMenu.value?.toggle(event)
+}
 </script>
 
 <template>
   <div class="navbar-user-actions">
-    <span><i class="pi pi-globe"></i></span>
+    <span @click="openLanguageMenu" class="flex items-center px-2"><i class="pi pi-globe" style="padding: 9px 6px;"></i>{{ selectedLang }}</span>
     <span><i class="pi pi-heart"></i></span>
     <span><i class="pi pi-user"></i></span>
+    <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true">  
+    </Menu>
   </div>
 </template>
 
