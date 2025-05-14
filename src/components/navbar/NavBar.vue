@@ -46,52 +46,38 @@ function toggle(event: Event) {
 </script>
 
 <template>
-  <div class="navbar mx-3 md:mx-64 my-3">
-    <div class="block md:hidden" @click="toggle"><i class="pi pi-bars mt-1" style="font-size: 1.5rem;"></i></div>
-    <Menu ref="menu" id="overlay_menu" :model="items" :popup="true">
-      <template #start>
-        <span class="inline-flex items-center gap-1 px-2 py-2">
-          <NavbarLogo/>
-        </span>
-      </template>
-    </Menu>
-    <div class="hidden md:block"><NavbarLogo/></div>
-    <div class="hidden md:block"><NavbarActions /></div>
-    <div class="grow px-5 md:px-0 md:grow-0"><NavbarSearch /></div>
-    <div class="hidden md:block"><NavbarUserActions /></div>
-    
-  </div>
+  <nav class="bg-white shadow-md w-full">
+    <div class="mx-auto px-4">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center md:hidden">
+          <button @click="toggle" class="text-gray-700 hover:text-gray-900 focus:outline-none">
+            <i class="pi pi-bars text-2xl"></i>
+          </button>
+        </div>
+        
+        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" class="md:hidden">
+          <template #start>
+            <div class="py-2">
+              <NavbarLogo />
+            </div>
+          </template>
+        </Menu>
+        
+        <div class="hidden md:flex md:items-center px-3">
+          <NavbarLogo />
+        </div>
+        
+        <div class="flex-1 flex items-center justify-center gap-2">
+          <div class="hidden md:flex md:items-center">
+            <NavbarActions />
+          </div>
+          <NavbarSearch />
+        </div>
+        
+        <div class="hidden md:flex md:items-center">
+          <NavbarUserActions />
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
-
-<style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-.navbar {
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: auto;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
-}
-</style>

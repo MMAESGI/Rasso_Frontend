@@ -6,57 +6,50 @@ import { onMounted, ref } from 'vue';
 const city = ref("");
 
 onMounted(() => {
-  getLocation()
+  const storedCity = sessionStorage.getItem('userCity');
+  if (storedCity) {
+    city.value = storedCity;
+  } else {
+    getLocation();
+  }
 })
 
-function getLocation(){
-  navigator.geolocation.getCurrentPosition(getLocationName);
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(
+    getLocationName,
+    handleLocationError,
+    { enableHighAccuracy: true, timeout: 5000, maximumAge: 60000 }
+  );
 }
 
-async function getLocationName(pos : GeolocationPosition){
+async function getLocationName(pos: GeolocationPosition) {
+  console.log("Location found:", pos);
   const res = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
-  if (res.error != undefined){
+  if (res.error != undefined) {
     city.value = "";
     return;
-  } 
+  }
+  
   city.value = res.address.city ?? res.address.town ?? res.address.municipality ?? res.address.country ?? "";
-}
-
-</script>
-
-<template>
-  <div class="navbar-actions">
-    <span class="location-display" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
-    <ButtonGroup>
-      <Button label="Carte" icon="pi pi-map" variant="outlined" />
-    </ButtonGroup>
-  </div>
-</template>
-
-<style scoped>
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.location-display {
-  padding: 0 8% 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  i {
-    padding-right: 3px;
+  
+  if (city.value) {
+    sessionStorage.setItem('userCity', city.value);
+    sessionStorage.setItem('userLat', pos.coords.latitude.toString());
+    sessionStorage.setItem('userLng', pos.coords.longitude.toString());
   }
 }
 
-.navbar-actions button:not(:last-child) {
-  border-inline-end: 1px solid transparent !important;
+function handleLocationError(error: GeolocationPositionError) {
+  console.warn("Geolocation error:", error.message);
+  city.value = "";
 }
+</script>
 
-.navbar-actions button:hover {
-  border-color: var(--p-button-primary-hover-background);
-  border-inline-end: 1px solid black !important;
-}
-</style>
+<template>
+  <div class="flex items-center">
+    <span class="flex items-center mr-5" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
+    <ButtonGroup>
+      <Button label="Carte" icon="pi pi-map" variant="outlined" class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black" />
+    </ButtonGroup>
+  </div>
+</template>

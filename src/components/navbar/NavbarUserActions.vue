@@ -25,42 +25,11 @@ function openLanguageMenu(event: Event) {
 </script>
 
 <template>
-  <div class="navbar-user-actions">
-    <span @click="openLanguageMenu" class="flex items-center px-2"><i class="pi pi-globe" style="padding: 9px 6px;"></i>{{ selectedLang }}</span>
-    <span><i class="pi pi-heart"></i></span>
-    <span><i class="pi pi-user"></i></span>
-    <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true">  
+  <div class="flex items-center">
+    <span @click="openLanguageMenu" class="flex items-center px-2 border-r-2 border-solid border-r-gray-300 border-y-0 border-l-0"><i class="pi pi-globe text-xl py-[9px] px-[6px]"></i>{{ selectedLang }}</span>
+    <span class="border-r-2 border-solid border-r-gray-300 border-y-0 border-l-0"><i class="pi pi-heart text-xl py-[9px] px-3"></i></span>
+    <span><i class="pi pi-user text-xl py-[9px] px-3"></i></span>
+    <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true" class="[&_*]:p-0">  
     </Menu>
   </div>
 </template>
-
-<style scoped>
-.navbar-user-actions {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-user-actions button:hover {
-  border-color: var(--p-button-primary-hover-background);
-}
-
-i {
-  font-size: 1.25rem;
-  padding: 9px 12px
-}
-
-span:not(:last-child) {
-  border-image: linear-gradient(180deg,rgba(255, 255, 255, 1) 0%, rgb(175, 175, 175) 50%, rgba(255, 255, 255, 1) 100%) 1 100%;
-  border-width: 2px;
-  border-style: solid;
-  border-left: 0;
-  border-top: 0;
-  border-bottom: 0;
-}
-</style>
-
-<style>
-#overlay_menu {
-  --p-menu-submenu-label-padding: 0;
-}
-</style>
