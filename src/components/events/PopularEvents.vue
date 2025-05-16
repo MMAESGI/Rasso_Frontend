@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import EventCard from './EventCard.vue'
 import Carousel from 'primevue/carousel';
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const events = ref([
   { id: 1, title: 'Event 1' },
