@@ -8,10 +8,18 @@ import InputText from 'primevue/inputtext'
       <InputIcon class="pi pi-search" />
       <InputText
         :fluid="true"
-        class="searchbar rounded"
+        class="searchbar"
         type="text"
         placeholder="Qu'est-ce que tu aimerais faire ?"
       />
     </IconField>
   </div>
 </template>
+
+<style scoped>
+.searchbar {
+  border-radius: 100px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+}
+</style>

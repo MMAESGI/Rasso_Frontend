@@ -1,34 +1,20 @@
 <script lang="ts"></script>
 
 <template>
-  <div class="herobanner">
-    <span class="herotitle">Evenement de quelque chose</span>
-    <span class="herotext "
-      >Texte sur la herobanner qui est censé représenter un évenement ou un truc du genre</span
-    >
+  <div class="w-full h-[400px] md:h-[500px] relative flex flex-col items-center justify-center text-white overflow-hidden">
+    <video
+      class="absolute top-0 left-0 w-full h-full object-cover video-background"
+      src="../../assets/24hMans.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
   </div>
 </template>
 
-<style lang="css" scoped>
-.herobanner {
-  width: 100%;
-  height: 500px;
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
-    no-repeat center
-      url('https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg');
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.herotitle {
-  font-size: 2.5em;
-}
-.herotext {
-  font-size: 1.5em;
+<style scoped>
+.video-background {
+  pointer-events: none;
 }
 </style>
