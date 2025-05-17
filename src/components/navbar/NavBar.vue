@@ -46,10 +46,11 @@ function toggle(event: Event) {
 </script>
 
 <template>
-  <nav class="bg-white shadow-md w-full">
-    <div class="mx-auto px-4">
-      <div class="flex justify-between h-16">
-        <div class="flex items-center md:hidden">
+  <nav class="bg-white shadow-md w-full md:fixed relative" style="z-index: 9;">
+    <div class="mx-auto px-4 max-w-[100vw]">
+      <div class="grid grid-cols-12 h-20">
+        <!-- Mobile menu button - takes full width on mobile, hidden on md+ -->
+        <div class="col-span-2 flex items-center md:hidden">
           <button @click="toggle" class="text-gray-700 hover:text-gray-900 focus:outline-none">
             <i class="pi pi-bars text-2xl"></i>
           </button>
@@ -63,18 +64,26 @@ function toggle(event: Event) {
           </template>
         </Menu>
         
-        <div class="hidden md:flex md:items-center px-3">
+        <!-- Logo - 15% width on desktop -->
+        <div class="hidden md:flex md:items-center col-span-2 px-3">
           <NavbarLogo />
         </div>
         
-        <div class="flex-1 flex items-center justify-center gap-2">
+        <!-- Center section with search - 70% width -->
+        <div class="col-span-8 flex items-center justify-between gap-4">
           <div class="hidden md:flex md:items-center">
             <NavbarActions />
           </div>
-          <NavbarSearch />
+          <div class="flex-1 max-w-[100%] mx-auto">
+            <NavbarSearch />
+          </div>
+          <div class="hidden md:block w-[100px]">
+            <!-- Spacer pour équilibrer la mise en page -->
+          </div>
         </div>
         
-        <div class="hidden md:flex md:items-center">
+        <!-- User actions - 15% width on desktop -->
+        <div class="hidden md:flex md:items-center col-span-2 justify-end">
           <NavbarUserActions />
         </div>
       </div>

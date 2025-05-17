@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('primevue/button')['default']
+    Carousel: typeof import('primevue/carousel')['default']
     EventCard: typeof import('./src/components/events/EventCard.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HeroBanner: typeof import('./src/components/hero/HeroBanner.vue')['default']
@@ -29,6 +30,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SplitButton: typeof import('primevue/splitbutton')['default']
+    Tag: typeof import('primevue/tag')['default']
     TheFooter: typeof import('./src/components/footer/TheFooter.vue')['default']
     TheMap: typeof import('./src/components/map/TheMap.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']

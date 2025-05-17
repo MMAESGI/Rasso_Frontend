@@ -1,45 +1,70 @@
 <template>
-  <div class="event">
-    <div class="image">
+  <div class="flex flex-col event-card">
+    <div class="overflow-hidden rounded-[3%] card-image group">
       <img
+        class="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-125"
         src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Bahrain"
       />
     </div>
-    <span class="location">Paris</span>
-    <span class="eventname">Nom de l'évènement</span>
-    <span class="datetime">20/05/2025 10:40</span>
+    <div class="card-info">
+      <span class="location">Paris</span>
+      <span class="event-title">Nom de l'évènement</span>
+      <span class="date">20/05/2025 10:40</span>
+    </div>
   </div>
 </template>
 
-<style lang="css" scoped>
-.event {
-  display: flex;
-  flex-direction: column;
-  border-radius: 3%;
-  box-shadow: 0px 0px 12px 0px rgba(122, 122, 122, 0.5);
-  padding: 1%;
+<style scoped>
+.event-card {
+  width: 90%;
 }
 
-.event .location,
-.event .datetime {
-  color: gray;
+.card-image {
+  aspect-ratio: 1 / 1;
 }
 
-.event:hover img {
-  transform: scale(1.2);
-  transition: 0.5s ease;
+.card-info {
+  padding: 0.5rem 0;
 }
 
-.image {
+.location {
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: block;
+}
+
+.event-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: block;
+  margin: 0.25rem 0;
+  white-space: nowrap;
   overflow: hidden;
-  border-radius: 10%;
-  height: 200px;
-  width: 200px;
+  text-overflow: ellipsis;
 }
 
-.image img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+.date {
+  font-size: 0.9rem;
+  color: #6b7280;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .event-card {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+  
+  .card-image {
+    aspect-ratio: 1 / 1;
+  }
+  
+  .location, .date {
+    font-size: 0.8rem;
+  }
+  
+  .event-title {
+    font-size: 0.95rem;
+  }
 }
 </style>
