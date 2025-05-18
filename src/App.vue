@@ -5,7 +5,7 @@ import NavBar from './components/navbar/NavBar.vue'
 </script>
 
 <template>
-  <header>
+  <header class="mb-[80px]"> <!-- NAVBAR HEIGHT -->
     <NavBar />
   </header>
 

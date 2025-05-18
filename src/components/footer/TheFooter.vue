@@ -25,6 +25,5 @@
   align-items: center;
   position: relative;
   bottom: 0;
-  margin-top: 10%;
 }
 </style>

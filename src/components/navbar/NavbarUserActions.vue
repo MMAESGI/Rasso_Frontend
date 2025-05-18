@@ -31,7 +31,7 @@ function openLanguageMenu(event: Event) {
       <span class="lang-selector">{{ selectedLang }}</span>
     </span>
     <span class="border-r-1 border-solid border-r-gray-300 border-y-0 border-l-0 cursor-pointer"><i class="pi pi-heart text-2xl py-[12px] px-4"></i></span>
-    <span class="cursor-pointer"><i class="pi pi-user text-2xl py-[12px] px-4"></i></span>
+    <RouterLink to="/login"><span class="cursor-pointer" ><i class="pi pi-user text-2xl py-[12px] px-4"></i></span></RouterLink>
     <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true" class="[&_*]:p-0">  
     </Menu>
   </div>
