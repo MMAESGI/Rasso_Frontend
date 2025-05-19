@@ -11,7 +11,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    allowedHosts: ['sandbox.sunlamander.tech', 'prod.sunlamander.tech'],
+    allowedHosts: ['sandbox.zastial.com', 'prod.zastial.com'],
   },
   plugins: [
     vue(),
