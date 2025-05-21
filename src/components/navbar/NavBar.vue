@@ -4,8 +4,10 @@ import NavbarActions from './NavbarActions.vue'
 import NavbarLogo from './NavbarLogo.vue'
 import NavbarSearch from './NavbarSearch.vue'
 import NavbarUserActions from './NavbarUserActions.vue'
+import { useRouter } from 'vue-router'
 
 const menu = useTemplateRef('menu')
+const router = useRouter();
 const items = ref([
   {
     separator: true
@@ -35,6 +37,9 @@ const items = ref([
       {
         label: 'Login',
         icon: 'pi pi-user',
+        command: () => {
+            router.push('/login');
+        }
       },
     ],
   },

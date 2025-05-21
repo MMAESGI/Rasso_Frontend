@@ -6,6 +6,8 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import { definePreset } from '@primeuix/themes'
+import Tooltip from 'primevue/tooltip';
+
 
 const app = createApp(App)
 
@@ -66,5 +68,6 @@ app.use(PrimeVue, {
     },
   },
 })
+app.directive('tooltip', Tooltip);
 
 app.mount('#app')
