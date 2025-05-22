@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import InputText from 'primevue/inputtext'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n() 
 </script>
 
 <template>
@@ -10,7 +13,7 @@ import InputText from 'primevue/inputtext'
         :fluid="true"
         class="searchbar"
         type="text"
-        placeholder="Qu'est-ce que tu aimerais faire ?"
+        :placeholder="t('homepage.navbar.search')"
       />
     </IconField>
   </div>

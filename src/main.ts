@@ -8,6 +8,10 @@ import Aura from '@primeuix/themes/aura'
 import { definePreset } from '@primeuix/themes'
 import Tooltip from 'primevue/tooltip';
 
+// Import i18n
+import { createI18n } from 'vue-i18n'
+import fr from './locales/fr.json'
+import en from './locales/en.json'
 
 const app = createApp(App)
 
@@ -59,6 +63,16 @@ const Noir = definePreset(Aura, {
   },
 })
 
+const i18n = createI18n({
+  legacy: false,
+  locale: import.meta.env.VITE_DEFAULT_LOCALE ?? 'fr',
+  fallbackLocale: import.meta.env.VITE_FALLBACK_LOCALE ?? 'en',
+  messages: {
+    fr,
+    en
+  }
+})
+
 app.use(router)
 app.use(PrimeVue, {
   theme: {
@@ -69,5 +83,6 @@ app.use(PrimeVue, {
   },
 })
 app.directive('tooltip', Tooltip);
+app.use(i18n)
 
 app.mount('#app')

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue';
+import { ref, useTemplateRef, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
 
 const languageMenu = useTemplateRef('languageMenu');
 const selectedLang = ref("EN");
@@ -8,16 +10,29 @@ const items = ref([
     items: [
       {
         label: "🇫🇷 Français",
-        command: () => {selectedLang.value = "FR"}
+        command: () => setLang('fr', 'FR')
       },
       {
         label: "🇬🇧 English",
-        command: () => {selectedLang.value = "EN"}
+        command: () => setLang('en', 'EN')
       },
     ]
   }
 ])
 
+onMounted(() => {
+  const savedLang = localStorage.getItem('lang')
+  if (savedLang) {
+    selectedLang.value = savedLang === 'fr' ? 'FR' : 'EN'
+    locale.value = savedLang
+  }
+})
+
+const setLang = (lang: string, label: string) => {
+  selectedLang.value = label
+  locale.value = lang
+  localStorage.setItem('lang', lang)
+}
 
 function openLanguageMenu(event: Event) {
   languageMenu.value?.toggle(event)
