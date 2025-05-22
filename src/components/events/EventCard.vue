@@ -17,6 +17,7 @@
 <style scoped>
 .event-card {
   width: 90%;
+  padding: 1rem;
 }
 
 .card-image {

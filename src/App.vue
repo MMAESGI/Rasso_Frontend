@@ -5,7 +5,7 @@ import NavBar from './components/navbar/NavBar.vue'
 </script>
 
 <template>
-  <header class="md:mb-[80px]"> <!-- NAVBAR HEIGHT -->
+  <header>
     <NavBar />
   </header>
 
@@ -25,5 +25,12 @@ header {
 
 div.content {
   flex-grow: 1 !important;
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  div.content {
+    padding-top: 0;
+  }
 }
 </style>

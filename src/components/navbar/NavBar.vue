@@ -71,7 +71,9 @@ function toggle(event: Event) {
         
         <!-- Logo - 15% width on desktop -->
         <div class="hidden md:flex md:items-center col-span-2 px-3">
-          <NavbarLogo />
+          <RouterLink to="/" class="flex items-center">
+            <NavbarLogo />
+          </RouterLink>
         </div>
         
         <!-- Center section with search - 70% width -->
