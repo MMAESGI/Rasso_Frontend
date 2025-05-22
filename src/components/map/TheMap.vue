@@ -9,13 +9,12 @@
   <div id="leaflet-map"></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 let map = null
-let userMarker = null
 
 onMounted(() => {
   const userLat = sessionStorage.getItem('userLat')
@@ -26,21 +25,23 @@ onMounted(() => {
 
   map = L.map('leaflet-map').setView([lat, lng], 15)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; OpenStreetMap contributors',
   }).addTo(map)
 
-  userMarker = L.marker([lat, lng], {
-    title: "Votre position",
-    alt: "Votre position",
+  L.marker([lat, lng], {
+    title: 'Votre position',
+    alt: 'Votre position',
     icon: L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
       shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-      shadowSize: [41, 41]
-    })
-  }).addTo(map).bindPopup("Vous êtes ici")
+      shadowSize: [41, 41],
+    }),
+  })
+    .addTo(map)
+    .bindPopup('Vous êtes ici')
 })
 
 onUnmounted(() => {
