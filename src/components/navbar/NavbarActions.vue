@@ -49,7 +49,16 @@ function handleLocationError(error: GeolocationPositionError) {
   <div class="flex items-center">
     <span class="flex items-center mr-5" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
     <ButtonGroup>
-      <Button label="Carte" icon="pi pi-map" variant="outlined" class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black" />
+      <RouterLink to="/" custom v-slot="{ navigate, href }">
+        <Button
+          label="Carte"
+          icon="pi pi-map"
+          variant="outlined"
+          class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black"
+          :href="href"
+          @click="navigate"
+        />
+      </RouterLink>
     </ButtonGroup>
   </div>
 </template>

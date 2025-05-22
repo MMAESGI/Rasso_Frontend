@@ -6,19 +6,58 @@
 
   <div class="border-b-2 border-gray-200 mb-4"></div>
 
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10828.582675773974!2d-1.5318783500000002!3d47.2724069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1743339735882!5m2!1sfr!2sfr"
-    style="border: 0"
-    allowfullscreen="false"
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-  ></iframe>
+  <div id="leaflet-map"></div>
 </template>
 
+<script setup>
+import { onMounted, onUnmounted } from 'vue'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+let map = null
+let userMarker = null
+
+onMounted(() => {
+  const userLat = sessionStorage.getItem('userLat')
+  const userLng = sessionStorage.getItem('userLng')
+
+  const lat = userLat ? parseFloat(userLat) : 48.8566
+  const lng = userLng ? parseFloat(userLng) : 2.3522
+
+  map = L.map('leaflet-map').setView([lat, lng], 15)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map)
+
+  userMarker = L.marker([lat, lng], {
+    title: "Votre position",
+    alt: "Votre position",
+    icon: L.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+      shadowSize: [41, 41]
+    })
+  }).addTo(map).bindPopup("Vous êtes ici")
+})
+
+onUnmounted(() => {
+  if (map) {
+    map.remove()
+    map = null
+  }
+})
+</script>
+
 <style lang="css" scoped>
-iframe {
+#leaflet-map {
   padding: 0 10%;
-  width: 100%;
+  margin: 0 auto;
+  width: 80%;
   height: 80vh;
+  border-radius: 12px;
+  z-index: 1;
 }
 </style>
