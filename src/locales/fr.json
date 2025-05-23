@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "Rasso - Race app FR"
+  },
+  "homepage": {
+    "navbar": {
+      "card": "Carte",
+      "search": "Qu'est-ce que tu aimerais faire ?"
+    },
+    "popularEvents": {
+      "title": "Top 10 des événements préférés",
+      "description": "Découvrez les événements les plus populaires par les utilisateurs."
+    },
+    "map": {
+      "title": "La carte",
+      "description": "Retrouvez les événements les plus proches de vous !"
+    }
+  },
+  "connexion": {
+    "login": {
+      "invalidEmail": "Email Invalide",
+      "invalidPassword": "Veuillez rentrer un mot de passe.",
+      "title": "Connexion",
+      "email": "Email",
+      "password": "Mot de passe",
+      "noAccount": "Vous n'avez pas de compte ?"
+    },
+    "register": {
+      "title": "Inscription",
+      "lastname": "Nom",
+      "firstname": "Prénom",
+      "username": "Nom d'affichage",
+      "email": "E-Mail",
+      "password": "Mot de passe",
+      "confirmpassword": "Confirmez le mot de passe",
+      "submit": "Inscription",
+      "alreadyAccount": "Vous avez déjà un compte ?",
+      "loginLink": "Connexion",
+      "usernameHelp": "Le nom d'affichage sera visible par les autres utilisateurs. Il peut être modifié à tout moment.",
+      "error": {
+        "usernameRequired": "Le nom d'affichage ne doit pas être vide",
+        "emailInvalid": "Email Invalide",
+        "passwordMin": "Le mot de passe doit avoir au minimum 8 caractères",
+        "passwordsNotMatch": "Les mots de passe ne correspondent pas"
+      }
+    }
+  }
+}

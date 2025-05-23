@@ -2,6 +2,9 @@
 import EventCard from './EventCard.vue'
 import Carousel from 'primevue/carousel';
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const events = ref([
   { id: 1, title: 'Event 1' },
@@ -35,8 +38,8 @@ onUnmounted(() => {
 
 <template>
   <div class="p-4 pt-10 max-w-7xl mx-auto">
-    <p class="text-4xl font-bold mb-4">Top 10 des événements préférés</p>
-    <p class="mb-4">Découvrez les événements les plus populaires par les utilisateurs.</p>
+    <p class="text-4xl font-bold mb-4">{{ t('homepage.popularEvents.title') }}</p>
+    <p class="mb-4">{{ t('homepage.popularEvents.description') }}</p>
   </div>
 
   <div class="border-b-2 border-gray-200 mb-4"></div>

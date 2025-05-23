@@ -1,0 +1,48 @@
+{
+  "app": {
+    "title": "Rasso - Race app EN"
+  },
+  "homepage": {
+    "navbar": {
+      "card": "Map",
+      "search": "What would you like to do?"
+    },
+    "popularEvents": {
+      "title": "Top 10 favorite events",
+      "description": "Discover the most popular events among users."
+    },
+    "map": {
+      "title": "The map",
+      "description": "Find the events closest to you!"
+    }
+  },
+  "connexion": {
+    "login": {
+      "invalidEmail": "Invalid email",
+      "invalidPassword": "Please enter a password.",
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "noAccount": "Don't have an account?"
+    },
+    "register": {
+      "title": "Sign up",
+      "lastname": "Last name",
+      "firstname": "First name",
+      "username": "Display name",
+      "email": "E-Mail",
+      "password": "Password",
+      "confirmpassword": "Confirm password",
+      "submit": "Sign up",
+      "alreadyAccount": "Already have an account?",
+      "loginLink": "Login",
+      "usernameHelp": "The display name will be visible to other users. It can be changed at any time.",
+      "error": {
+        "usernameRequired": "Display name must not be empty",
+        "emailInvalid": "Invalid email",
+        "passwordMin": "Password must be at least 8 characters",
+        "passwordsNotMatch": "Passwords do not match"
+      }
+    }
+  }
+}

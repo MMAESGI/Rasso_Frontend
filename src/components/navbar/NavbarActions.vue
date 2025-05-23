@@ -2,7 +2,9 @@
 import { reverseGeocode } from '@/services/geolocation';
 import { Button, ButtonGroup } from 'primevue'
 import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const city = ref("");
 
 onMounted(() => {
@@ -23,7 +25,6 @@ function getLocation() {
 }
 
 async function getLocationName(pos: GeolocationPosition) {
-  console.log("Location found:", pos);
   const res = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
   if (res.error != undefined) {
     city.value = "";
@@ -51,7 +52,7 @@ function handleLocationError(error: GeolocationPositionError) {
     <ButtonGroup>
       <RouterLink to="/" custom v-slot="{ navigate, href }">
         <Button
-          label="Carte"
+          :label="t('homepage.navbar.card')"
           icon="pi pi-map"
           variant="outlined"
           class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black"
