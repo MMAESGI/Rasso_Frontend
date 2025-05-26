@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col event-card">
-    <div class="overflow-hidden rounded-[3%] card-image group">
+  <div class="flex flex-col event-card group">
+    <div class="overflow-hidden rounded-[3%] card-image">
       <img
-        class="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-125"
+        class="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-125"
         src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Bahrain"
       />
     </div>
@@ -17,7 +17,8 @@
 <style scoped>
 .event-card {
   width: 90%;
-  padding: 1rem;
+  margin: 1rem;
+  cursor: pointer;
 }
 
 .card-image {
