@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import EventCard from '@/components/events/EventCard.vue'
 import { ref } from 'vue'
@@ -35,12 +34,14 @@ const favourites = ref([
     <div class="border-b-2 border-gray-200 mb-4"></div>
 
     <div class="max-w-5xl mx-auto p-6">
-        <div v-if="favourites.length > 0" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <EventCard
-                v-for="event in favourites"
-                :key="event.id"
-                :event="event"
-            />
+        <div v-if="favourites.length > 0" class="grid gap-6 justify-items-center">
+            <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(250px,300px))] gap-6 justify-center w-full">
+                <EventCard
+                    v-for="event in favourites"
+                    :key="event.id"
+                    :event="event"
+                />
+            </div>
         </div>
         <div v-else class="flex flex-col items-center justify-center text-gray-500 py-12 text-xl gap-6">
             <span>{{ t('favourites.empty') }}</span>
