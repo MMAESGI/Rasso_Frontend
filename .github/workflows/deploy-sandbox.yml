@@ -1,14 +1,12 @@
 name: Deploy to Sandbox on Label
 
 on:
-  pull_request:
-    types: [labeled]
+  push:
     branches:
-      - main
+      - env/sandbox
 
 jobs:
   deploy-sandbox:
-    if: contains(github.event.pull_request.labels.*.name, 'sandbox')
     runs-on: ubuntu-latest
 
     steps:
@@ -23,29 +21,14 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << EOF
+        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << 'EOF'
           set -e
           cd MMAESGI/sandbox/Rasso_Frontend
 
           git fetch --all
-          git checkout env/sandbox
-          git reset --hard origin/env/sandbox
+          git reset --hard origin/main
 
-          echo "Merging main into env/sandbox"
-          git merge origin/main -m "Auto-merge main into env/sandbox"
-
-          echo "Fetching sandbox PR branches"
-          prs=\$(curl -s -H "Authorization: token $GH_TOKEN" \
-            https://api.github.com/repos/${{ github.repository }}/pulls?state=open | \
-            jq -r '.[] | select(.labels[].name? == "sandbox") | .head.ref')
-
-          for branch in \$prs; do
-            echo "Merging branch: \$branch"
-            git fetch origin \$branch
-            git merge origin/\$branch -m "Auto-merge \$branch into env/sandbox"
-          done
-
-          echo "Redeploying"
+          echo "Deploying latest sanbox code"
           docker compose down
           docker compose up -d
         EOF
