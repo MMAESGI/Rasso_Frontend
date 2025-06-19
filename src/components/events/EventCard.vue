@@ -1,14 +1,16 @@
 <template>
   <div class="flex flex-col event-card">
     <div class="overflow-hidden rounded-[3%] card-image group">
-      <img
-        class="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-125"
-        src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Bahrain"
-      />
+      <RouterLink to="/event">
+        <img
+          class="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-125"
+          src="https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Bahrain"
+        />
+      </RouterLink>
     </div>
     <div class="card-info">
       <span class="location">Paris</span>
-      <span class="event-title">Nom de l'évènement</span>
+      <RouterLink to="/event"><span class="event-title">Nom de l'évènement</span></RouterLink>
       <span class="date">20/05/2025 10:40</span>
     </div>
   </div>
