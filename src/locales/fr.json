@@ -44,5 +44,10 @@
         "passwordsNotMatch": "Les mots de passe ne correspondent pas"
       }
     }
+  },
+  "favourites": {
+    "title": "Mes événements favoris",
+    "empty": "Vous n'avez pas encore d'événements favoris.",
+    "add": "Découvrez ceux qui intéressent les autres utilisateurs !"
   }
 }

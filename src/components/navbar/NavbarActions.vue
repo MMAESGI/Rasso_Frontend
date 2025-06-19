@@ -37,6 +37,9 @@ async function getLocationName(pos: GeolocationPosition) {
     sessionStorage.setItem('userCity', city.value);
     sessionStorage.setItem('userLat', pos.coords.latitude.toString());
     sessionStorage.setItem('userLng', pos.coords.longitude.toString());
+
+    // Reload the page to apply the new city on the map
+    window.location.reload();
   }
 }
 
@@ -44,22 +47,26 @@ function handleLocationError(error: GeolocationPositionError) {
   console.warn("Geolocation error:", error.message);
   city.value = "";
 }
+
+function scrollToMap() {
+  const map = document.getElementById('leaflet-map');
+  if (map) {
+    map.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
 </script>
 
 <template>
   <div class="flex items-center">
     <span class="flex items-center mr-5" v-if="city != ''"><i class="pi pi-map-marker"></i> {{ city }}</span>
     <ButtonGroup>
-      <RouterLink to="/" custom v-slot="{ navigate, href }">
-        <Button
-          :label="t('homepage.navbar.card')"
-          icon="pi pi-map"
-          variant="outlined"
-          class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black"
-          :href="href"
-          @click="navigate"
-        />
-      </RouterLink>
+      <Button
+        :label="t('homepage.navbar.card')"
+        icon="pi pi-map"
+        variant="outlined"
+        class="hover:border-[var(--p-button-primary-hover-background)] group-[&:not(:last-child)]:border-r-transparent hover:border-r-black"
+        @click="scrollToMap"
+      />
     </ButtonGroup>
   </div>
 </template>
