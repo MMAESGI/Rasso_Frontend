@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AllEvents: typeof import('./src/components/admin/AllEvents.vue')['default']
     Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
     Carousel: typeof import('primevue/carousel')['default']
@@ -38,13 +39,16 @@ declare module 'vue' {
     Password: typeof import('primevue/password')['default']
     PopularEvents: typeof import('./src/components/events/PopularEvents.vue')['default']
     RegisterForm: typeof import('./src/components/login/RegisterForm.vue')['default']
+    RejectedEvents: typeof import('./src/components/admin/RejectedEvents.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SplitButton: typeof import('primevue/splitbutton')['default']
+    TabPanel: typeof import('primevue/tabpanel')['default']
     Tag: typeof import('primevue/tag')['default']
     TheFooter: typeof import('./src/components/footer/TheFooter.vue')['default']
     TheMap: typeof import('./src/components/map/TheMap.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    ValidateEvents: typeof import('./src/components/admin/ValidateEvents.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }
