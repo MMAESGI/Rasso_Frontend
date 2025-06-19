@@ -11,10 +11,10 @@ const locations = [{
 </script>
 
 <template>
-    <div class="px-120 py-10">
-        <EventImages :images="['https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg']" class="mb-10"/>
-        <div class="flex w-full">
-            <div class="w-2/3 pr-10">
+    <div class="md:px-80 px-5 py-10">
+        <EventImages :images="['https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg', 'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg']" class="mb-10"/>
+        <div class="flex w-full flex-col md:flex-row">
+            <div class="md:w-2/3 md:pr-10">
                 <div class="flex justify-between items-center w-full">
                     <span class="text-2xl font-bold">Formule 1 - Grand Prix Japon 2025</span>
                     <div class="rounded-full pill-shadow flex items-center justify-center px-2.5 py-2">
@@ -27,12 +27,12 @@ const locations = [{
                     Dreamspeed allie modernité technologique et paysages naturels spectaculaires.</div>
                 <div class="" style="white-space: pre-wrap;">{{ description }}</div>
             </div>
-            <div class="w-1/3 flex flex-col">
+            <div class="md:w-1/3 mt-10 md:mt-0 flex flex-col">
                 <div class="flex flex-row items-center font-semibold">
                     <i class="pi pi-calendar text-2xl! mr-2"></i> 
                     <span>20 Juillet 2025, 22:30 CEST</span>
                 </div>
-                <div class="flex flex-row items-center font-semibold">
+                <div class="flex flex-row items-center font-semibold mb-2">
                     <i class="pi pi-map-marker text-2xl! mr-2"></i> 
                     <span>25, rue Jean Pierre, 44300 Nantes, France</span>
                 </div>
