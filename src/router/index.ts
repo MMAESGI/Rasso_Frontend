@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
+import EventView from '@/views/EventView.vue'
 import FavouritesView from '@/views/FavouritesView.vue'
 
 const router = createRouter({
@@ -29,6 +30,11 @@ const router = createRouter({
       path: "/register",
       name:"register",
       component: RegisterView
+    },
+    {
+      path: "/event", // A changer en /event/{id} probablement
+      name: "event",
+      component: EventView
     },
     {
       path: "/favourites",
