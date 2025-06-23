@@ -2,6 +2,12 @@
   "app": {
     "title": "Rasso - Race app EN"
   },
+  "notFound": {
+    "errorCode": "404",
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "backHome": "Back to home"
+  },
   "homepage": {
     "navbar": {
       "card": "Map",
@@ -44,5 +50,10 @@
         "passwordsNotMatch": "Passwords do not match"
       }
     }
+  },
+    "favourites": {
+    "title": "My favorite events",
+    "empty": "You don't have any favorite events yet.",
+    "add": "Discover those that interest other users!"
   }
 }
