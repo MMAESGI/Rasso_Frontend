@@ -2,6 +2,12 @@
   "app": {
     "title": "Rasso - Race app FR"
   },
+  "notFound": {
+    "errorCode": "404",
+    "title": "Page non trouvée",
+    "description": "La page que vous cherchez n'existe pas.",
+    "backHome": "Retour à l'accueil"
+  },
   "homepage": {
     "navbar": {
       "card": "Carte",

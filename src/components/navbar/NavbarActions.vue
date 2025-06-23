@@ -52,6 +52,8 @@ function scrollToMap() {
   const map = document.getElementById('leaflet-map');
   if (map) {
     map.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    window.location.href = '/#leaflet-map';
   }
 }
 </script>

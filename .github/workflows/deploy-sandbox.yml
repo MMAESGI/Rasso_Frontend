@@ -26,9 +26,9 @@ jobs:
           cd MMAESGI/sandbox/Rasso_Frontend
 
           git fetch --all
-          git reset --hard origin/main
+          git reset --hard origin/env/sandbox
 
           echo "Deploying latest sanbox code"
-          docker compose down
-          docker compose up -d
+          docker compose -f docker-compose-front.yml down
+          docker compose -f docker-compose-front.yml up -d
         EOF
