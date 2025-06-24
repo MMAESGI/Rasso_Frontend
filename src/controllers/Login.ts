@@ -14,7 +14,6 @@ export async function login(credentials: LoginRequest): Promise<LoginResponse> {
       },
     });
     
-    // Store the token in localStorage
     localStorage.setItem('auth_token', response.data.token);
     
     return response.data;
@@ -41,8 +40,6 @@ export async function register(userData: RegisterRequest): Promise<RegisterRespo
     });
 
     console.log('Registration successful:', response.data);
-    // Optionally, you can store the token or redirect the user after registration
-    // localStorage.setItem('auth_token', response.data.token);
     
     return response.data;
   } catch (error) {
@@ -58,9 +55,8 @@ export async function register(userData: RegisterRequest): Promise<RegisterRespo
  * Logs out the current user
  */
 export function logout(): void {
-  // Remove the token from localStorage
   localStorage.removeItem('auth_token');
-  // You might also want to redirect to the login page or home page
+  // TODO: Redirect to login page
 }
 
 /**
