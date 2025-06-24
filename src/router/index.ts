@@ -29,30 +29,30 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: "/login",
-      name:"login",
-      component: LoginView
+      path: '/login',
+      name: 'login',
+      component: LoginView,
     },
     {
-      path: "/register",
-      name:"register",
-      component: RegisterView
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
     },
     {
-      path: "/event", // A changer en /event/{id} probablement
-      name: "event",
-      component: EventView
+      path: '/event', // A changer en /event/{id} probablement
+      name: 'event',
+      component: EventView,
     },
     {
-      path: "/favourites",
-      name:"favourites",
+      path: '/favourites',
+      name: 'favourites',
       component: FavouritesView,
     },
     {
-      path: "/community",
-      name:"community",
+      path: '/community',
+      name: 'community',
       component: CommunityView,
-    }
+    },
   ],
 })
 

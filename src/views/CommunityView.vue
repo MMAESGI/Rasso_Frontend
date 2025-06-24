@@ -31,9 +31,13 @@
         <div class="bg-white p-6 rounded-2xl shadow-md">
           <h2 class="text-xl font-semibold mb-4">{{ t('community.rankings.topOrganizers') }}</h2>
           <ol class="list-decimal list-inside space-y-2">
-            <li><span class="font-medium">Alice</span> — 24 {{ t('community.rankings.events') }}</li>
+            <li>
+              <span class="font-medium">Alice</span> — 24 {{ t('community.rankings.events') }}
+            </li>
             <li><span class="font-medium">Marc</span> — 19 {{ t('community.rankings.events') }}</li>
-            <li><span class="font-medium">Sophie</span> — 16 {{ t('community.rankings.events') }}</li>
+            <li>
+              <span class="font-medium">Sophie</span> — 16 {{ t('community.rankings.events') }}
+            </li>
             <li><span class="font-medium">Hugo</span> — 14 {{ t('community.rankings.events') }}</li>
           </ol>
         </div>
@@ -41,25 +45,40 @@
         <div class="bg-white p-6 rounded-2xl shadow-md">
           <h2 class="text-xl font-semibold mb-4">{{ t('community.rankings.topParticipants') }}</h2>
           <ol class="list-decimal list-inside space-y-2">
-            <li><span class="font-medium">Jean</span> — 58 {{ t('community.rankings.participations') }}</li>
-            <li><span class="font-medium">Camille</span> — 54 {{ t('community.rankings.participations') }}</li>
-            <li><span class="font-medium">Sami</span> — 47 {{ t('community.rankings.participations') }}</li>
-            <li><span class="font-medium">Luc</span> — 43 {{ t('community.rankings.participations') }}</li>
+            <li>
+              <span class="font-medium">Jean</span> — 58
+              {{ t('community.rankings.participations') }}
+            </li>
+            <li>
+              <span class="font-medium">Camille</span> — 54
+              {{ t('community.rankings.participations') }}
+            </li>
+            <li>
+              <span class="font-medium">Sami</span> — 47
+              {{ t('community.rankings.participations') }}
+            </li>
+            <li>
+              <span class="font-medium">Luc</span> — 43 {{ t('community.rankings.participations') }}
+            </li>
           </ol>
         </div>
       </div>
 
       <div class="bg-white p-6 rounded-2xl shadow-md text-center">
         <h2 class="text-xl font-semibold mb-4">{{ t('community.stats.title') }}</h2>
-        <p class="text-lg">👥 <span class="font-bold">320</span> {{ t('community.stats.users') }}</p>
-        <p class="text-lg mt-2">🎤 <span class="font-bold">28</span> {{ t('community.stats.organizers') }}</p>
+        <p class="text-lg">
+          👥 <span class="font-bold">320</span> {{ t('community.stats.users') }}
+        </p>
+        <p class="text-lg mt-2">
+          🎤 <span class="font-bold">28</span> {{ t('community.stats.organizers') }}
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import Carousel from 'primevue/carousel';
+import Carousel from 'primevue/carousel'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 

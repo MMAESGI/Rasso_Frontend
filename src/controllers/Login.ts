@@ -1,5 +1,5 @@
-import axios from 'axios';
-import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '@/models/Login';
+import axios from 'axios'
+import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from '@/models/Login'
 
 /**
  * Authenticates a user with email and password
@@ -10,19 +10,19 @@ export async function login(credentials: LoginRequest): Promise<LoginResponse> {
   try {
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/login`, credentials, {
       headers: {
-      'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
-    });
-    
-    localStorage.setItem('auth_token', response.data.token);
-    
-    return response.data;
+    })
+
+    localStorage.setItem('auth_token', response.data.token)
+
+    return response.data
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Login error:', error)
     if (axios.isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message || 'Failed to login');
+      throw new Error(error.response.data.message || 'Failed to login')
     }
-    throw error;
+    throw error
   }
 }
 
@@ -35,19 +35,19 @@ export async function register(userData: RegisterRequest): Promise<RegisterRespo
   try {
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, userData, {
       headers: {
-      'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
-    });
+    })
 
-    console.log('Registration successful:', response.data);
-    
-    return response.data;
+    console.log('Registration successful:', response.data)
+
+    return response.data
   } catch (error) {
-    console.error('Registration error:', error);
+    console.error('Registration error:', error)
     if (axios.isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message || 'Registration failed');
+      throw new Error(error.response.data.message || 'Registration failed')
     }
-    throw error;
+    throw error
   }
 }
 
@@ -55,7 +55,7 @@ export async function register(userData: RegisterRequest): Promise<RegisterRespo
  * Logs out the current user
  */
 export function logout(): void {
-  localStorage.removeItem('auth_token');
+  localStorage.removeItem('auth_token')
   // TODO: Redirect to login page
 }
 
@@ -64,7 +64,7 @@ export function logout(): void {
  * @returns boolean indicating if user is logged in
  */
 export function isAuthenticated(): boolean {
-  return localStorage.getItem('auth_token') !== null;
+  return localStorage.getItem('auth_token') !== null
 }
 
 /**
@@ -72,5 +72,5 @@ export function isAuthenticated(): boolean {
  * @returns The current auth token or null if not authenticated
  */
 export function getToken(): string | null {
-  return localStorage.getItem('auth_token');
+  return localStorage.getItem('auth_token')
 }

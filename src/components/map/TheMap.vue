@@ -1,7 +1,7 @@
 <template>
   <div class="p-4 pt-10 max-w-7xl mx-auto">
-    <p class="text-4xl font-bold mb-4">{{ t("homepage.map.title") }}</p>
-    <p class="mb-4">{{ t("homepage.map.description") }}</p>
+    <p class="text-4xl font-bold mb-4">{{ t('homepage.map.title') }}</p>
+    <p class="mb-4">{{ t('homepage.map.description') }}</p>
   </div>
 
   <div class="border-b-2 border-gray-200 mb-4"></div>
@@ -15,7 +15,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n() 
+const { t } = useI18n()
 
 let map: L.Map | null = null
 
