@@ -58,15 +58,16 @@
     max-width: 75%;
     margin: 0 auto;
   }
-  
+
   .card-image {
     aspect-ratio: 1 / 1;
   }
-  
-  .location, .date {
+
+  .location,
+  .date {
     font-size: 0.8rem;
   }
-  
+
   .event-title {
     font-size: 0.95rem;
   }

@@ -9,21 +9,20 @@ import 'leaflet/dist/leaflet.css'
 
 const props = defineProps<{
   markers?: {
-    lat: number,
-    lng: number,
+    lat: number
+    lng: number
     name: string
-  }[], 
+  }[]
   height: string
-}>();
+}>()
 
-let map = null
+let map: L.Map | null = null
 
 onMounted(() => {
-
   let deflat = 48.8566
   let deflng = 2.3522
   if (props.markers != undefined && props.markers.length > 0) {
-    [deflat, deflng] = [props.markers[0].lat, props.markers[0].lng]
+    ;[deflat, deflng] = [props.markers[0].lat, props.markers[0].lng]
   }
 
   map = L.map('small-leaflet-map').setView([deflat, deflng], 15)
@@ -45,12 +44,10 @@ onMounted(() => {
           shadowSize: [41, 41],
         }),
       })
-        .addTo(map)
+        .addTo(map!)
         .bindPopup(marker.name)
     })
   }
-
-
 })
 
 onUnmounted(() => {

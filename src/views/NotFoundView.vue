@@ -1,9 +1,9 @@
 <template>
   <div class="not-found-container">
-    <h1 class="error-code">{{ t("notFound.errorCode") }}</h1>
-    <h2 class="error-message">{{ t("notFound.title") }}</h2>
-    <p>{{ t("notFound.description") }}</p>
-    <RouterLink to="/" class="home-button">{{ t("notFound.backHome") }}</RouterLink>
+    <h1 class="error-code">{{ t('notFound.errorCode') }}</h1>
+    <h2 class="error-message">{{ t('notFound.title') }}</h2>
+    <p>{{ t('notFound.description') }}</p>
+    <RouterLink to="/" class="home-button">{{ t('notFound.backHome') }}</RouterLink>
   </div>
 </template>
 

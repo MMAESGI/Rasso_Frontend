@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import EventCard from './EventCard.vue'
-import Carousel from 'primevue/carousel';
+import Carousel from 'primevue/carousel'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -91,5 +91,4 @@ onUnmounted(() => {
   flex: 0 0 auto;
   max-width: 70%;
 }
-
 </style>
