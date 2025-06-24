@@ -47,7 +47,9 @@
         "usernameRequired": "Le nom d'affichage ne doit pas être vide",
         "emailInvalid": "Email Invalide",
         "passwordMin": "Le mot de passe doit avoir au minimum 8 caractères",
-        "passwordsNotMatch": "Les mots de passe ne correspondent pas"
+        "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+        "toastTitle": "Erreur",
+        "toastMessage": "L'inscription a échoué. Veuillez réessayer ultérieurement."
       }
     }
   },

@@ -47,7 +47,9 @@
         "usernameRequired": "Display name must not be empty",
         "emailInvalid": "Invalid email",
         "passwordMin": "Password must be at least 8 characters",
-        "passwordsNotMatch": "Passwords do not match"
+        "passwordsNotMatch": "Passwords do not match",
+        "toastTitle": "Error",
+        "toastMessage": "Registration failed. Please try again later."
       }
     }
   },

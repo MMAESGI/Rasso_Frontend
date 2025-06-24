@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { Badge, Button, FloatLabel, InputText, Password } from 'primevue';
+import { Badge, Button, FloatLabel, InputText, Password, Toast } from 'primevue';
 import { Form } from '@primevue/forms';
 import { reactive } from 'vue';
 import { z } from "zod";
 import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { useI18n } from 'vue-i18n'
+import { register } from '@/controllers/Login';
+import type { RegisterRequest } from '@/models/Login';
+import router from '@/router';
+import { useToast } from 'primevue/usetoast';
 
 const { t } = useI18n()
+const toast = useToast()
 
 const initialValues = reactive({
     lastname: '',
@@ -35,9 +40,26 @@ const resolver = zodResolver(z.object({
     }
 }))
 
-function onFormSubmit({ valid }: { valid: boolean }) {
+function onFormSubmit({ valid, values }: { valid: boolean, values: any }) {
     if (valid) {
-        console.log("Hello");
+        const registerRequest : RegisterRequest = {
+            lastName: values.lastname,
+            firstName: values.firstname,
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            confirmPassword: values.confirmpassword
+        };
+        register(registerRequest).then(() => {
+            router.push('/login')
+        }).catch((error: Error) => {
+            toast.add({
+                severity: 'error',
+                summary: t('connexion.register.error.toastTitle'),
+                detail: error.message || t('connexion.register.error.toastMessage'),
+                life: 5000
+            });
+        });
     }
 }
 
@@ -47,7 +69,7 @@ function onFormSubmit({ valid }: { valid: boolean }) {
     <div class="w-full h-full flex items-center justify-center py-12">
         <div class="shadow-xl rounded w-[90%] md:w-[800px] md:min-h-3/4 p-12 flex flex-col justify-between">
             <h2 class="text-3xl font-semibold text-center">{{ $t('connexion.register.title') }}</h2>
-            <Form v-slot="$form" :initialValues :resolver="resolver" @submit="onFormSubmit"
+            <Form v-slot="$form" :initialValues="initialValues" :resolver="resolver" @submit="onFormSubmit"
                 class="flex flex-col login-inputs my-5">
                 <div class="md:grid md:grid-cols-2 md:gap-x-4">
                     <div class="w-full">
@@ -136,6 +158,7 @@ function onFormSubmit({ valid }: { valid: boolean }) {
             </div>
         </div>
     </div>
+    <Toast position="top-right" />
 </template>
 
 <style scoped>

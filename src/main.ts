@@ -13,6 +13,8 @@ import { createI18n } from 'vue-i18n'
 import fr from './locales/fr.json'
 import en from './locales/en.json'
 
+import ToastService from 'primevue/toastservice';
+
 const app = createApp(App)
 
 const Noir = definePreset(Aura, {
@@ -84,5 +86,6 @@ app.use(PrimeVue, {
 })
 app.directive('tooltip', Tooltip);
 app.use(i18n)
+app.use(ToastService);
 
 app.mount('#app')

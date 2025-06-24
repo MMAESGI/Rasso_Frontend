@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, useTemplateRef, onMounted } from 'vue';
+import { ref, useTemplateRef, onMounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n'
+import { isAuthenticated } from '@/controllers/Login';
+
 const { locale } = useI18n()
 
 const languageMenu = useTemplateRef('languageMenu');
@@ -19,6 +21,10 @@ const items = ref([
     ]
   }
 ])
+
+const userRoute = computed(() => {
+  return isAuthenticated() ? '/user' : '/login';
+});
 
 onMounted(() => {
   const savedLang = localStorage.getItem('lang')
@@ -51,7 +57,7 @@ function openLanguageMenu(event: Event) {
     <RouterLink to="/community" class="border-r-1 border-solid border-r-gray-300 border-y-0 border-l-0 cursor-pointer">
       <i class="pi pi-camera text-2xl py-[12px] px-4"></i>
     </RouterLink>
-    <RouterLink to="/login" class="cursor-pointer">
+    <RouterLink :to="userRoute" class="cursor-pointer">
       <i class="pi pi-user text-2xl py-[12px] px-4"></i>
     </RouterLink>
     <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true" class="[&_*]:p-0">  

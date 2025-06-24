@@ -6,9 +6,12 @@ import z from 'zod';
 import { zodResolver } from '@primevue/forms/resolvers/zod';
 import { reactive } from 'vue';
 import { useI18n } from 'vue-i18n'
+import { login } from '@/controllers/Login';
+import type { LoginRequest } from '@/models/Login';
+import { useToast } from 'primevue/usetoast';
 
 const { t } = useI18n()
-
+const toast = useToast()
 const initialValues = reactive({
     email: '',
     password: ''
@@ -19,9 +22,22 @@ const resolver = zodResolver(z.object({
     password: z.string().min(1, t("connexion.login.invalidPassword"))
 }));
 
-function onFormSubmit({ valid }: { valid: boolean }) {
-    if (valid){
-        console.log("Submitted");
+function onFormSubmit({ valid, values }: { valid: boolean, values: any }) {
+    if (valid) {
+        const loginRequest : LoginRequest = {
+            email: values.email,
+            password: values.password,
+        };
+        login(loginRequest).then(() => {
+            router.push('/')
+        }).catch((error: Error) => {
+            toast.add({
+                severity: 'error',
+                summary: t('connexion.register.error.toastTitle'),
+                detail: error.message || t('connexion.register.error.toastMessage'),
+                life: 5000
+            });
+        });
     }
 }
 
