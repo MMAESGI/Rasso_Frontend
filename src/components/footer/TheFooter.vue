@@ -1,5 +1,3 @@
-<script lang="ts"></script>
-
 <template>
   <footer class="footer-main">
     © 2025 Rasso

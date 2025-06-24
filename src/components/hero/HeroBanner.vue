@@ -1,5 +1,3 @@
-<script lang="ts"></script>
-
 <template>
   <div class="w-full h-[400px] md:h-[500px] relative flex flex-col items-center justify-center text-white overflow-hidden">
     <video

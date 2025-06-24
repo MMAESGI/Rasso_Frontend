@@ -17,7 +17,7 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n() 
 
-let map = null
+let map: L.Map | null = null
 
 onMounted(() => {
   const userLat = sessionStorage.getItem('userLat')
@@ -43,7 +43,7 @@ onMounted(() => {
       shadowSize: [41, 41],
     }),
   })
-    .addTo(map)
+    .addTo(map!)
     .bindPopup('Vous êtes ici')
 })
 

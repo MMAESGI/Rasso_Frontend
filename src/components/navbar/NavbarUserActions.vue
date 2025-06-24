@@ -48,7 +48,12 @@ function openLanguageMenu(event: Event) {
     <RouterLink to="/favourites" class="border-r-1 border-solid border-r-gray-300 border-y-0 border-l-0 cursor-pointer">
       <i class="pi pi-heart text-2xl py-[12px] px-4"></i>
     </RouterLink>
-    <RouterLink to="/login"><span class="cursor-pointer" ><i class="pi pi-user text-2xl py-[12px] px-4"></i></span></RouterLink>
+    <RouterLink to="/community" class="border-r-1 border-solid border-r-gray-300 border-y-0 border-l-0 cursor-pointer">
+      <i class="pi pi-camera text-2xl py-[12px] px-4"></i>
+    </RouterLink>
+    <RouterLink to="/login" class="cursor-pointer">
+      <i class="pi pi-user text-2xl py-[12px] px-4"></i>
+    </RouterLink>
     <Menu ref="languageMenu" id="overlay_menu" :model="items" :popup="true" class="[&_*]:p-0">  
     </Menu>
   </div>

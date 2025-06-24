@@ -55,5 +55,22 @@
     "title": "Mes événements favoris",
     "empty": "Vous n'avez pas encore d'événements favoris.",
     "add": "Découvrez ceux qui intéressent les autres utilisateurs !"
+  },
+  "community": {
+    "gallery": {
+      "title": "Galerie des événements"
+    },
+    "rankings": {
+      "title": "Classements & Statistiques",
+      "topOrganizers": "Top Organisateurs d'événements",
+      "topParticipants": "Top Participants aux événements",
+      "events": "événements",
+      "participations": "participations"
+    },
+    "stats": {
+      "title": "Statistiques globales",
+      "users": "utilisateurs inscrits",
+      "organizers": "organisateurs"
+    }
   }
 }

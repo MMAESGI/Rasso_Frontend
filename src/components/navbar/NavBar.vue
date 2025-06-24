@@ -35,6 +35,20 @@ const items = ref([
   {
     items: [
       {
+        label: 'Favoris',
+        icon: 'pi pi-heart',
+        command: () => {
+            router.push('/favourites');
+        }
+      },
+      {
+        label: 'Community',
+        icon: 'pi pi-comment',
+        command: () => {
+            router.push('/community');
+        }
+      },
+      {
         label: 'Login',
         icon: 'pi pi-user',
         command: () => {

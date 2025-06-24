@@ -16,7 +16,7 @@ const props = defineProps<{
   height: string
 }>();
 
-let map = null
+let map: L.Map | null = null
 
 onMounted(() => {
 
@@ -45,7 +45,7 @@ onMounted(() => {
           shadowSize: [41, 41],
         }),
       })
-        .addTo(map)
+        .addTo(map!)
         .bindPopup(marker.name)
     })
   }
