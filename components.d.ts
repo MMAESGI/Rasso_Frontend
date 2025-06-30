@@ -47,6 +47,7 @@ declare module 'vue' {
     TheFooter: typeof import('./src/components/footer/TheFooter.vue')['default']
     TheMap: typeof import('./src/components/map/TheMap.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    UserInfoForm: typeof import('./src/components/UserInfoForm.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }
