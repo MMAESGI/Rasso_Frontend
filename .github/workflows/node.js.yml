@@ -26,8 +26,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
+    - name: Configure .npmrc for GitHub Packages
+      run: |
+          echo "@mmaesgi:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_GITHUB_TOKEN }}" >> .npmrc
+          
     - run: npm ci
     - run: npm run lint
     - run: npm run format
-env:
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
