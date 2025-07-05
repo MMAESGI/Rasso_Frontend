@@ -29,3 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run format
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
