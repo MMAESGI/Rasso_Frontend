@@ -10,7 +10,7 @@ class RassoApiService {
 
 
   async test(): Promise<void> {
-    const response : DetailedEventResponseApiResponse = await this.client.eventsGET2("id")
+    //const response : DetailedEventResponseApiResponse = await this.client.eventsGET2("id")
 
   }
 
