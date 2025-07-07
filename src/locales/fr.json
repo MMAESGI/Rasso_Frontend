@@ -74,5 +74,18 @@
       "users": "utilisateurs inscrits",
       "organizers": "organisateurs"
     }
+  },
+  "userInfoForm": {
+    "title": "Mes informations personnelles",
+    "subtitle": "Vérifiez et changez vos informations",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "username": "Nom d'utilisateur",
+    "validate": "Valider",
+    "password": "Nouveau mot de passe",
+    "confirmPassword": "Validation mot de passe",
+    "infoValidated": "Infos validées !",
+    "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+    "passwordChanged": "Mot de passe changé !"
   }
 }

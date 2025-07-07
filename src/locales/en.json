@@ -74,5 +74,18 @@
       "users": "registered users",
       "organizers": "organizers"
     }
+  },
+  "userInfoForm": {
+    "title": "My personal information",
+    "subtitle": "Check and change your information",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "username": "Username",
+    "validate": "Validate",
+    "password": "New password",
+    "confirmPassword": "Confirm password",
+    "infoValidated": "Information validated!",
+    "passwordsNotMatch": "Passwords do not match",
+    "passwordChanged": "Password changed!"
   }
 }
