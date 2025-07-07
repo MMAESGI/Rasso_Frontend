@@ -33,12 +33,12 @@
     },
     "register": {
       "title": "Inscription",
-      "lastname": "Nom",
-      "firstname": "Prénom",
+      "lastName": "Nom",
+      "firstName": "Prénom",
       "username": "Nom d'affichage",
       "email": "E-Mail",
       "password": "Mot de passe",
-      "confirmpassword": "Confirmez le mot de passe",
+      "confirmPassword": "Confirmez le mot de passe",
       "submit": "Inscription",
       "alreadyAccount": "Vous avez déjà un compte ?",
       "loginLink": "Connexion",
@@ -74,5 +74,18 @@
       "users": "utilisateurs inscrits",
       "organizers": "organisateurs"
     }
+  },
+  "userInfoForm": {
+    "title": "Mes informations personnelles",
+    "subtitle": "Vérifiez et changez vos informations",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "username": "Nom d'utilisateur",
+    "validate": "Valider",
+    "password": "Nouveau mot de passe",
+    "confirmPassword": "Validation mot de passe",
+    "infoValidated": "Infos validées !",
+    "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+    "passwordChanged": "Mot de passe changé !"
   }
 }

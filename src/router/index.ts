@@ -6,6 +6,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import EventView from '@/views/EventView.vue'
 import FavouritesView from '@/views/FavouritesView.vue'
 import CommunityView from '@/views/CommunityView.vue'
+import UserView from '@/views/UserView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,11 @@ const router = createRouter({
       name: 'community',
       component: CommunityView,
     },
+    {
+      path: "/user",
+      name:"userInfo",
+      component: UserView,
+    }
   ],
 })
 
