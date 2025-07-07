@@ -1,9 +1,5 @@
-<script lang="ts"></script>
-
 <template>
-  <footer class="footer-main">
-    © 2025 Rasso
-  </footer>
+  <footer class="footer-main">© 2025 Rasso</footer>
 </template>
 
 <style scoped>

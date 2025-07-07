@@ -47,13 +47,32 @@
         "usernameRequired": "Display name must not be empty",
         "emailInvalid": "Invalid email",
         "passwordMin": "Password must be at least 8 characters",
-        "passwordsNotMatch": "Passwords do not match"
+        "passwordsNotMatch": "Passwords do not match",
+        "toastTitle": "Error",
+        "toastMessage": "Registration failed. Please try again later."
       }
     }
   },
-    "favourites": {
+  "favourites": {
     "title": "My favorite events",
     "empty": "You don't have any favorite events yet.",
     "add": "Discover those that interest other users!"
+  },
+  "community": {
+    "gallery": {
+      "title": "Event Gallery"
+    },
+    "rankings": {
+      "title": "Rankings & Statistics",
+      "topOrganizers": "Top Event Organizers",
+      "topParticipants": "Top Event Participants",
+      "events": "events",
+      "participations": "participations"
+    },
+    "stats": {
+      "title": "Global Statistics",
+      "users": "registered users",
+      "organizers": "organizers"
+    }
   }
 }
