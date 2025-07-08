@@ -15,30 +15,30 @@ const { t } = useI18n()
 const toast = useToast()
 
 const initialValues = reactive({
-  lastName: '',
-  firstName: '',
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+  LastName: '',
+  FirstName: '',
+  Username: '',
+  Email: '',
+  Password: '',
+  ConfirmPassword: '',
 })
 
 const resolver = zodResolver(
   z
     .object({
-      lastName: z.string().optional().or(z.literal('')),
-      firstName: z.string().optional().or(z.literal('')),
-      username: z.string().min(1, t('connexion.register.error.usernameRequired')),
-      email: z.string().email(t('connexion.register.error.emailInvalid')),
-      password: z.string().min(8, t('connexion.register.error.passwordMin')),
-      confirmPassword: z.string(),
+      LastName: z.string().optional().or(z.literal('')),
+      FirstName: z.string().optional().or(z.literal('')),
+      Username: z.string().min(1, t('connexion.register.error.usernameRequired')),
+      Email: z.string().email(t('connexion.register.error.emailInvalid')),
+      Password: z.string().min(8, t('connexion.register.error.passwordMin')),
+      ConfirmPassword: z.string(),
     })
     .superRefine((val, ctx) => {
-      if (val.confirmPassword !== val.password) {
+      if (val.ConfirmPassword !== val.Password) {
         ctx.addIssue({
           code: 'custom',
           message: t('connexion.register.error.passwordsNotMatch'),
-          path: ['confirmPassword'],
+          path: ['ConfirmPassword'],
         })
       }
     }),
@@ -49,12 +49,12 @@ function onFormSubmit(event: FormSubmitEvent<RegisterRequest>) {
 
   if (valid) {
     const registerRequest: RegisterRequest = {
-      lastName: values.lastName,
-      firstName: values.firstName,
-      username: values.username,
-      email: values.email,
-      password: values.password,
-      confirmPassword: values.confirmPassword,
+      LastName: values.LastName,
+      FirstName: values.FirstName,
+      Username: values.Username,
+      Email: values.Email,
+      Password: values.Password,
+      ConfirmPassword: values.ConfirmPassword,
     }
     register(registerRequest)
       .then(() => {
@@ -90,32 +90,32 @@ function onFormSubmit(event: FormSubmitEvent<RegisterRequest>) {
             <InputGroup>
               <InputGroupAddon> A </InputGroupAddon>
               <FloatLabel variant="on">
-                <InputText id="lastName" name="lastName" />
-                <label for="lastName">{{ $t('connexion.register.lastName') }}</label>
+                <InputText id="LastName" name="LastName" />
+                <label for="LastName">{{ $t('connexion.register.lastName') }}</label>
               </FloatLabel>
             </InputGroup>
             <Message
-              v-if="$form.lastName?.invalid"
+              v-if="$form.LastName?.invalid"
               severity="error"
               size="small"
               variant="simple"
-              >{{ $form.lastName.error.message }}</Message
+              >{{ $form.LastName.error.message }}</Message
             >
           </div>
           <div class="w-full mt-5 md:mt-0">
             <InputGroup>
               <InputGroupAddon> a </InputGroupAddon>
               <FloatLabel variant="on">
-                <InputText id="firstName" name="firstName" />
-                <label for="firstName">{{ $t('connexion.register.firstName') }}</label>
+                <InputText id="firstName" name="FirstName" />
+                <label for="FirstName">{{ $t('connexion.register.firstName') }}</label>
               </FloatLabel>
             </InputGroup>
             <Message
-              v-if="$form.firstName?.invalid"
+              v-if="$form.FirstName?.invalid"
               severity="error"
               size="small"
               variant="simple"
-              >{{ $form.firstName.error.message }}</Message
+              >{{ $form.FirstName.error.message }}</Message
             >
           </div>
         </div>
@@ -125,31 +125,31 @@ function onFormSubmit(event: FormSubmitEvent<RegisterRequest>) {
               <i class="pi pi-user"></i>
             </InputGroupAddon>
             <FloatLabel variant="on">
-              <InputText id="username" name="username" />
-              <label for="username">{{ $t('connexion.register.username') }}</label>
+              <InputText id="Username" name="Username" />
+              <label for="Username">{{ $t('connexion.register.username') }}</label>
             </FloatLabel>
           </InputGroup>
           <Badge value="?" class="ml-3" v-tooltip.top="$t('connexion.register.usernameHelp')">
           </Badge>
         </div>
-        <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{
-          $form.username.error.message
+        <Message v-if="$form.Username?.invalid" severity="error" size="small" variant="simple">{{
+          $form.Username.error.message
         }}</Message>
         <InputGroup class="mt-5">
           <InputGroupAddon> @ </InputGroupAddon>
           <FloatLabel variant="on">
-            <InputText inputmode="email" id="email" name="email" :feedback="false" />
-            <label for="email">{{ $t('connexion.register.email') }}</label>
+            <InputText inputmode="Email" id="Email" name="Email" :feedback="false" />
+            <label for="Email">{{ $t('connexion.register.email') }}</label>
           </FloatLabel>
         </InputGroup>
-        <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{
-          $form.email.error.message
+        <Message v-if="$form.Email?.invalid" severity="error" size="small" variant="simple">{{
+          $form.Email.error.message
         }}</Message>
         <InputGroup class="mt-5">
           <InputGroupAddon> # </InputGroupAddon>
           <FloatLabel variant="on">
-            <Password id="password" name="password" :feedback="false" />
-            <label for="password">{{ $t('connexion.register.password') }}</label>
+            <Password id="Password" name="Password" :feedback="false" />
+            <label for="Password">{{ $t('connexion.register.password') }}</label>
           </FloatLabel>
         </InputGroup>
         <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{
@@ -158,8 +158,8 @@ function onFormSubmit(event: FormSubmitEvent<RegisterRequest>) {
         <InputGroup class="mt-5">
           <InputGroupAddon> # </InputGroupAddon>
           <FloatLabel variant="on">
-            <Password id="confirmPassword" name="confirmPassword" :feedback="false" />
-            <label for="confirmPassword">{{ $t('connexion.register.confirmPassword') }}</label>
+            <Password id="ConfirmPassword" name="ConfirmPassword" :feedback="false" />
+            <label for="ConfirmPassword">{{ $t('connexion.register.confirmPassword') }}</label>
           </FloatLabel>
         </InputGroup>
         <Message

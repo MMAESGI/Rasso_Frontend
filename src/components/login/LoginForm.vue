@@ -34,7 +34,7 @@ function onFormSubmit(event: FormSubmitEvent<LoginRequest>) {
     }
     login(loginRequest)
       .then(() => {
-        router.push('/')
+        router.push('/').then(() => window.location.reload())
       })
       .catch((error: Error) => {
         toast.add({

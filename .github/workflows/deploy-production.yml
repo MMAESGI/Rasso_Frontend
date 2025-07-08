@@ -23,8 +23,10 @@ jobs:
           set -e
           cd MMAESGI/production/Rasso_Frontend
 
-          git fetch --all
+          git fetch --alls
           git reset --hard origin/main
+
+          npm install
 
           echo "Deploying latest production code"
           cd ..

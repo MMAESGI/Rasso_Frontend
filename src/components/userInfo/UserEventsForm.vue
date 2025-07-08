@@ -1,17 +1,45 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { getUserByEmail, updateUser } from '@/controllers/User'
+import { rassoApiService } from '@/services/rasso-api.service'
+import { EventResponse } from '@mmaesgi/rassoapi-client'
 
 const { t } = useI18n()
 
+const user_id = ref("")
 const firstname = ref('')
 const lastname = ref('')
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const events = ref<EventResponse[]>([]);
 
-function submitInfo() {
-  // TODO: call API or emit event
+onMounted(() => {
+  // Fetch user data on mount
+  getUserByEmail()
+    .then(user => {
+      user_id.value = user.id || ''
+      firstname.value = user.firstName || ''
+      lastname.value = user.lastName || ''
+      username.value = user.username || ''
+    })
+    .catch(error => {
+      console.error('Failed to fetch user data:', error)
+      alert(t('userInfoForm.fetchError'))
+    })
+
+    rassoApiService.eventsGET().then(response => {
+      events.value = response.data ?? [];
+    })
+})
+
+async function submitInfo() {
+  await updateUser(user_id.value, {
+    firstName: firstname.value,
+    lastName: lastname.value,
+    username: username.value
+  })
   alert(t('userInfoForm.infoValidated'))
 }
 
@@ -36,7 +64,7 @@ const showConfirmPassword = ref(false)
     </div>
   </div>
   <div class="border-b-2 border-gray-200 mb-4"></div>
-  <div class="max-w-5xl mx-auto mt-8">
+  <div class="max-w-5xl mx-auto my-8">
     <form @submit.prevent="submitInfo" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
       <div>
         <label for="firstname" class="block mb-2 font-semibold">{{ t('userInfoForm.firstname') }}</label>

@@ -11,7 +11,11 @@
   "homepage": {
     "navbar": {
       "card": "Map",
-      "search": "What would you like to do?"
+      "search": "What would you like to do?",
+      "account": "My account",
+      "create_event": "Create an event",
+      "login": "Login",
+      "logout": "Logout"
     },
     "popularEvents": {
       "title": "Top 10 favorite events",
@@ -82,10 +86,20 @@
     "lastname": "Last name",
     "username": "Username",
     "validate": "Validate",
-    "password": "New password",
+    "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "infoValidated": "Information validated!",
     "passwordsNotMatch": "Passwords do not match",
-    "passwordChanged": "Password changed!"
+    "passwordChanged": "Password changed!",
+    "fetchError": "Error fetching user data. Please try again later."
+  },
+    "userInfoEvents": {
+    "title": "Your events"
+  },
+  "userMenu": {
+    "account": "Account",
+    "signIn": "Log In",
+    "signOut": "Sign Out",
+    "events": "Your events"
   }
 }
