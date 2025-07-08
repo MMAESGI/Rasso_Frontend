@@ -21,7 +21,8 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << 'EOF'
+        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << EOF
+          source ~/.bashrc
           set -e
           cd MMAESGI/sandbox/Rasso_Frontend
 
