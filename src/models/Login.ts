@@ -1,10 +1,10 @@
 export type RegisterRequest = {
-  email: string
-  password: string
-  confirmPassword: string
-  firstName: string
-  lastName: string
-  username: string
+  Email: string
+  Password: string
+  ConfirmPassword: string
+  FirstName: string
+  LastName: string
+  Username: string
 }
 
 export type RegisterResponse = {

@@ -15,12 +15,13 @@ export async function login(credentials: LoginRequest): Promise<LoginResponse> {
     })
 
     localStorage.setItem('auth_token', response.data.token)
+    localStorage.setItem('user_email', response.data.user.email)
 
     return response.data
   } catch (error) {
     console.error('Login error:', error)
     if (axios.isAxiosError(error) && error.response) {
-      throw new Error(error.response.data.message || 'Failed to login')
+      throw new Error(error.response.data.message ?? 'Failed to login')
     }
     throw error
   }

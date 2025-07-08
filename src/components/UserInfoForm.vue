@@ -1,17 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { getUserByEmail, updateUser } from '@/controllers/User'
 
 const { t } = useI18n()
 
+const user_id = ref("")
 const firstname = ref('')
 const lastname = ref('')
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 
-function submitInfo() {
-  // TODO: call API or emit event
+onMounted(() => {
+  // Fetch user data on mount
+  getUserByEmail()
+    .then(user => {
+      user_id.value = user.id || ''
+      firstname.value = user.firstName || ''
+      lastname.value = user.lastName || ''
+      username.value = user.username || ''
+    })
+    .catch(error => {
+      console.error('Failed to fetch user data:', error)
+      alert(t('userInfoForm.fetchError'))
+    })
+})
+
+async function submitInfo() {
+  await updateUser(user_id.value, {
+    firstName: firstname.value,
+    lastName: lastname.value,
+    username: username.value
+  })
   alert(t('userInfoForm.infoValidated'))
 }
 

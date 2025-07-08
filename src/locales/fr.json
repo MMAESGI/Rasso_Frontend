@@ -82,10 +82,11 @@
     "lastname": "Nom",
     "username": "Nom d'utilisateur",
     "validate": "Valider",
-    "password": "Nouveau mot de passe",
+    "newPassword": "Nouveau mot de passe",
     "confirmPassword": "Validation mot de passe",
     "infoValidated": "Infos validées !",
     "passwordsNotMatch": "Les mots de passe ne correspondent pas",
-    "passwordChanged": "Mot de passe changé !"
+    "passwordChanged": "Mot de passe changé !",
+    "fetchError": "Erreur lors de la récupération des données utilisateur. Veuillez réessayer plus tard."
   }
 }

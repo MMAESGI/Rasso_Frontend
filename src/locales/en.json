@@ -82,10 +82,11 @@
     "lastname": "Last name",
     "username": "Username",
     "validate": "Validate",
-    "password": "New password",
+    "newPassword": "New password",
     "confirmPassword": "Confirm password",
     "infoValidated": "Information validated!",
     "passwordsNotMatch": "Passwords do not match",
-    "passwordChanged": "Password changed!"
+    "passwordChanged": "Password changed!",
+    "fetchError": "Error fetching user data. Please try again later."
   }
 }

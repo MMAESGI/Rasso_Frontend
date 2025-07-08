@@ -40,7 +40,7 @@ const router = createRouter({
       component: RegisterView,
     },
     {
-      path: '/event', // A changer en /event/{id} probablement
+      path: '/event/:id',
       name: 'event',
       component: EventView,
     },

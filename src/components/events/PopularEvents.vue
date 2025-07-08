@@ -3,19 +3,20 @@ import EventCard from './EventCard.vue'
 import Carousel from 'primevue/carousel'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { getTopEvents } from '../../controllers/Events'
+import type { Event } from '@/models/Event';
 
 const { t } = useI18n()
+const events = ref<Event[]>([]);
 
-const events = ref([
-  { id: 1, title: 'Event 1' },
-  { id: 2, title: 'Event 2' },
-  { id: 3, title: 'Event 3' },
-  { id: 4, title: 'Event 4' },
-  { id: 5, title: 'Event 5' },
-  { id: 6, title: 'Event 6' },
-  { id: 7, title: 'Event 7' },
-  { id: 8, title: 'Event 8' },
-])
+onMounted(() => {
+  getTopEvents().then((response) => {
+    events.value = response
+    console.log(response)
+  }).catch((error) => {
+    console.error('Error fetching events:', error)
+  })
+})
 
 const isMobile = ref(false)
 
@@ -48,7 +49,7 @@ onUnmounted(() => {
     <Carousel :value="events" :numVisible="4" :numScroll="4" circular>
       <template #item="event">
         <div class="flex justify-center">
-          <EventCard :event="event" />
+          <EventCard :event="event.data" />
         </div>
       </template>
     </Carousel>
