@@ -4,8 +4,6 @@ import { useI18n } from 'vue-i18n'
 import { getUserByEmail, updateUser } from '@/controllers/User'
 import { rassoApiService } from '@/services/rasso-api.service'
 import { EventResponse } from '@mmaesgi/rassoapi-client'
-import EventCard from '../events/EventCard.vue'
-import type { Event } from '@/models/Event'
 
 const { t } = useI18n()
 
