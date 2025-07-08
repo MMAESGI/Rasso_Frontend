@@ -8,7 +8,7 @@ import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } f
  */
 export async function login(credentials: LoginRequest): Promise<LoginResponse> {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_IDENTITY_URL}/login`, credentials, {
+    const response = await axios.post(`${import.meta.env.VITE_IDENTITY_URL}/auth/connexion`, credentials, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -34,7 +34,7 @@ export async function login(credentials: LoginRequest): Promise<LoginResponse> {
  */
 export async function register(userData: RegisterRequest): Promise<RegisterResponse> {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_IDENTITY_URL}/signup`, userData, {
+    const response = await axios.post(`${import.meta.env.VITE_IDENTITY_URL}/auth/inscription`, userData, {
       headers: {
         'Content-Type': 'application/json',
       },

@@ -33,19 +33,19 @@ export async function getEventById(id: string): Promise<Event | null> {
 }
 
 export async function getTopEvents(): Promise<Event[]> {
-    try {
-        const response = await rassoApiService.top();
-        const events: Event[] = [];
-        if (response.data) {
-            response.data.forEach(event => {
-                events.push(event as Event);
-            });
-        }
-        return events;
-    } catch (error) {
-        console.error('Error fetching events:', error);
-        throw error;
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/events/populaires`);
+    const events: Event[] = [];
+    if (response.data) {
+      response.data.data.forEach((event: unknown) => {
+        events.push(event as Event);
+      });
     }
+    return events;
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    throw error;
+  }
 }
 
 export async function getEventsByUser(): Promise<Event> {
