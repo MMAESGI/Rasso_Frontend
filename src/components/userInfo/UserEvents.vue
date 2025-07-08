@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { ref, onMounted } from 'vue'
-import { rassoApiService } from '@/services/rasso-api.service';
+import { getEventsByUser } from '@/controllers/Events';
 import EventCard from '../events/EventCard.vue';
 import type { Event } from '@/models/Event';
 import type { EventStatus } from '@/models/EventStatus';
@@ -11,7 +11,7 @@ const { t } = useI18n()
 const events = ref<Event[]>([]);
 
 onMounted(() => {
-    rassoApiService.eventsGET().then(response => {
+    getEventsByUser().then(response => {
       events.value = response.data?.map((v) => {
         return {
             ...v,

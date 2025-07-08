@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import UserInfoForm from "../components/userInfo/UserEventsForm.vue"
+import UserInfoEvents from '@/components/userInfo/UserEvents.vue'
 </script>
 
 <template>
   <main class="h-full">
-    <UserInfoForm />
+    <UserInfoEvents />
   </main>
 </template>

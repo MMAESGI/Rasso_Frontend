@@ -8,7 +8,7 @@ import FavouritesView from '@/views/FavouritesView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import UserView from '@/views/UserView.vue'
 import CreateEventView from '@/views/CreateEventView.vue'
-import UserInfoEvents from '@/components/userInfo/UserInfoEvents.vue'
+import UserInfoEvents from '@/views/UserEventsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

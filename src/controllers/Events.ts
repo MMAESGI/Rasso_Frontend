@@ -48,6 +48,30 @@ export async function getTopEvents(): Promise<Event[]> {
     }
 }
 
+export async function getEventsByUser(): Promise<Event> {
+    try {
+    const token = localStorage.getItem('auth_token');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      } as Record<string, string>,
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/events/user_events`, config);
+
+    return response.data
+  } catch (error) {
+    console.error('Login error:', error)
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message ?? 'Failed to login')
+    }
+    throw error
+  }
+}
+
+
 export async function createEvent(eventData: EventRequest): Promise<Event> {
     try {
     const token = localStorage.getItem('auth_token');

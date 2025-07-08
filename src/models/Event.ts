@@ -1,4 +1,4 @@
-import type { EventStatus } from "./EventStatus";
+// import type { EventStatus } from "./EventStatus";
 
 export type Event = {
     id?: string;
@@ -18,5 +18,5 @@ export type EventRequest = {
     date?: Date;
     location?: string;
     category?: string;
-    status: EventStatus;
+    // status: EventStatus;
 }
