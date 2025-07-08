@@ -24,18 +24,10 @@ jobs:
         ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << EOF
           set -e
 
-          if [ -s "$HOME/.nvm/nvm.sh" ]; then
-            export NVM_DIR="$HOME/.nvm"
-            . "$NVM_DIR/nvm.sh"
-            nvm use --lts
-          fi
-
           cd MMAESGI/sandbox/Rasso_Frontend
 
           git fetch --all
           git reset --hard origin/env/sandbox
-
-          npm install
 
           echo "Deploying latest sandbox code"
           cd ..
