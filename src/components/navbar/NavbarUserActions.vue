@@ -5,7 +5,7 @@ import { logout, isAuthenticated } from '@/controllers/Login'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 
 const languageMenu = useTemplateRef('languageMenu')
 const userMenu = useTemplateRef('userMenu')
@@ -34,8 +34,6 @@ function handleLogout() {
   router.push('/login')
 }
 
-const { t } = useI18n()
-
 const userMenuItems = computed(() => [
   {
     label: t('homepage.navbar.account'),
@@ -50,7 +48,13 @@ const userMenuItems = computed(() => [
     visible: isAuth.value,
   },
   {
-    label: t('homepage.navbar.logout'),
+    label: t("userMenu.events"),
+    icon: 'pi pi-calendar',
+    command: () => router.push('/user/events'),
+    visible: isAuth.value,
+  },
+  {
+    label: t("userMenu.signOut"),
     icon: 'pi pi-sign-out',
     command: handleLogout,
     visible: isAuth.value,

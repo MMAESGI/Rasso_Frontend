@@ -1,3 +1,5 @@
+import type { EventStatus } from "./EventStatus";
+
 export type Event = {
     id?: string;
     title?: string;
@@ -16,4 +18,5 @@ export type EventRequest = {
     date?: Date;
     location?: string;
     category?: string;
+    status: EventStatus;
 }

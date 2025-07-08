@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserInfoForm from "../components/UserInfoForm.vue"
+import UserInfoForm from "../components/userInfo/UserInfoForm.vue"
 </script>
 
 <template>

@@ -92,5 +92,14 @@
     "passwordsNotMatch": "Les mots de passe ne correspondent pas",
     "passwordChanged": "Mot de passe changé !",
     "fetchError": "Erreur lors de la récupération des données utilisateur. Veuillez réessayer plus tard."
+  },
+  "userInfoEvents": {
+    "title": "Vos événements"
+  },
+  "userMenu": {
+    "account": "Compte",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
+    "events": "Vos événements"
   }
 }
