@@ -92,5 +92,14 @@
     "passwordsNotMatch": "Passwords do not match",
     "passwordChanged": "Password changed!",
     "fetchError": "Error fetching user data. Please try again later."
+  },
+    "userInfoEvents": {
+    "title": "Your events"
+  },
+  "userMenu": {
+    "account": "Account",
+    "signIn": "Log In",
+    "signOut": "Sign Out",
+    "events": "Your events"
   }
 }
