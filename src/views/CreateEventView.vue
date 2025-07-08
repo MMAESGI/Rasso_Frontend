@@ -68,13 +68,8 @@ async function submitForm() {
     })
 
     await router.push(`/event/${eventCreated.data.id}`)
-  } catch (error: any) {
-    toast.add({
-      severity: 'error',
-      summary: t('event.create.error.title'),
-      detail: error?.message || t('event.create.error.generic'),
-      life: 5000,
-    })
+  } catch (error) {
+        console.error('Erreur lors de la création de l\'événement:', error)
   }
 }
 </script>

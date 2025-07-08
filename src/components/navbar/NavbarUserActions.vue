@@ -63,10 +63,6 @@ const userMenuItems = computed(() => [
   },
 ])
 
-const userRoute = computed(() => {
-  return isAuthenticated() ? '/user' : '/login'
-})
-
 onMounted(() => {
   const savedLang = localStorage.getItem('lang')
   if (savedLang) {

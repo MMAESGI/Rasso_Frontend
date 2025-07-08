@@ -43,8 +43,8 @@ function formatDate(date: string | Date | undefined) {
 // Helper for images fallback
 function getImages(): string[] {
   // On tente d'utiliser une propriété imageUrl si elle existe, sinon fallback
-  if (eventInfo.value && 'imageUrl' in eventInfo.value && (eventInfo.value as any).imageUrl) {
-    return [(eventInfo.value as any).imageUrl]
+  if (eventInfo.value && 'imageUrl' in eventInfo.value && (eventInfo.value).imageUrl) {
+    return [(eventInfo.value).imageUrl]
   }
   return [
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
