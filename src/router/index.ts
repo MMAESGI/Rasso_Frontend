@@ -7,6 +7,7 @@ import EventView from '@/views/EventView.vue'
 import FavouritesView from '@/views/FavouritesView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import UserView from '@/views/UserView.vue'
+import CreateEventView from '@/views/CreateEventView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,7 +59,12 @@ const router = createRouter({
       path: "/user",
       name:"userInfo",
       component: UserView,
-    }
+    },
+    {
+      path: '/create_event',
+      name: 'create_event',
+      component: CreateEventView,
+    },
   ],
 })
 

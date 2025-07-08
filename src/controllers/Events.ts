@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { rassoApiService } from '@/services/rasso-api.service';
-import type { Event } from '@/models/Event';
+import type { Event, EventRequest } from '@/models/Event';
 
 export async function getEvents(): Promise<Event[]> {
     try {
@@ -45,4 +46,27 @@ export async function getTopEvents(): Promise<Event[]> {
         console.error('Error fetching events:', error);
         throw error;
     }
+}
+
+export async function createEvent(eventData: EventRequest): Promise<Event> {
+    try {
+    const token = localStorage.getItem('auth_token');
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      } as Record<string, string>,
+    };
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/events`, eventData, config);
+
+    return response.data
+  } catch (error) {
+    console.error('Login error:', error)
+    if (axios.isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message ?? 'Failed to login')
+    }
+    throw error
+  }
 }

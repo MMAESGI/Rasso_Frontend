@@ -7,7 +7,7 @@ import type { UserResponse } from '@/models/User'
  */
 export async function getUserByEmail(): Promise<UserResponse> {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/email/${localStorage.getItem('user_email')}`, {
+    const response = await axios.get(`${import.meta.env.VITE_IDENTITY_URL}/users/email/${localStorage.getItem('user_email')}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
@@ -33,7 +33,7 @@ export async function updateUser(user_id: string, updatedData: Partial<UserRespo
   try {
     console.log(user_id, updatedData)
     const response = await axios.put(
-      `${import.meta.env.VITE_API_URL}/users/${user_id}`,
+      `${import.meta.env.VITE_IDENTITY_URL}/users/${user_id}`,
       updatedData,
       {
         headers: {

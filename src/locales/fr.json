@@ -11,7 +11,11 @@
   "homepage": {
     "navbar": {
       "card": "Carte",
-      "search": "Qu'est-ce que tu aimerais faire ?"
+      "search": "Qu'est-ce que tu aimerais faire ?",
+      "account": "Mon compte",
+      "create_event": "Créer un événement",
+      "login": "Connexion",
+      "logout": "Déconnexion"
     },
     "popularEvents": {
       "title": "Top 10 des événements préférés",

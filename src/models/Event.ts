@@ -9,3 +9,11 @@ export type Event = {
     category?: string;
     isFavorite?: boolean;
 }
+
+export type EventRequest = {
+    title?: string;
+    description?: string;
+    date?: Date;
+    location?: string;
+    category?: string;
+}

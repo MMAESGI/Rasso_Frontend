@@ -34,21 +34,29 @@ function handleLogout() {
   router.push('/login')
 }
 
+const { t } = useI18n()
+
 const userMenuItems = computed(() => [
   {
-    label: 'Compte',
+    label: t('homepage.navbar.account'),
     icon: 'pi pi-user',
     command: () => router.push('/user'),
     visible: isAuth.value,
   },
   {
-    label: 'Déconnexion',
+    label: t('homepage.navbar.create_event'),
+    icon: 'pi pi-cog',
+    command: () => router.push('/create_event'),
+    visible: isAuth.value,
+  },
+  {
+    label: t('homepage.navbar.logout'),
     icon: 'pi pi-sign-out',
     command: handleLogout,
     visible: isAuth.value,
   },
   {
-    label: 'Connexion',
+    label: t('homepage.navbar.login'),
     icon: 'pi pi-sign-in',
     command: () => router.push('/login'),
     visible: !isAuth.value,

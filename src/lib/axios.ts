@@ -6,7 +6,7 @@ const jwtAxios = axios.create({
 
 // Intercepteur : injecte automatiquement le token dans chaque requête
 jwtAxios.interceptors.request.use(config => {
-  const token = localStorage.getItem('jwt');
+  const token = localStorage.getItem('auth_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
