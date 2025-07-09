@@ -4,7 +4,7 @@
       <RouterLink :to="`/event/${event.id}`">
         <img
           class="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-125"
-          src='https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/2018-redesign-assets/Racehub%20header%20images%2016x9/Bahrain'
+          :src="event.imageUrls?.[0] || 'https://via.placeholder.com/300'"
           :alt="event.title"
         />
       </RouterLink>

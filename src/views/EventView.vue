@@ -17,7 +17,10 @@ onMounted(() => {
   const route = useRoute()
   const eventId = route.params.id
   getEventById(eventId.toString()).then((event) => {
-    eventInfo.value = event;
+    eventInfo.value = event.data;
+
+    console.log('eventInfo.value', eventInfo.value)
+
     if (eventInfo.value) {
       locations.value = {
         lat: eventInfo.value.latitude ?? 48.8566,
@@ -43,10 +46,8 @@ function formatDate(date: string | Date | undefined) {
 // Helper for images fallback
 function getImages(): string[] {
   // On tente d'utiliser une propriété imageUrl si elle existe, sinon fallback
-  if (eventInfo.value && 'imageUrl' in eventInfo.value && (eventInfo.value).imageUrl) {
-    return [(eventInfo.value).imageUrl]
-  }
-  return [
+
+  return eventInfo.value?.imageUrls || [
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',

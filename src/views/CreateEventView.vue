@@ -22,13 +22,25 @@
                 <label for="description" class="block mb-1 font-semibold">Description</label>
                 <textarea id="description" v-model="event.description" class="input" placeholder="Description"></textarea>
             </div>
+            <div>
+                <label for="images" class="block mb-1 font-semibold">Images</label>
+                <input type="file" id="images" @change="handleImageChange" multiple class="input" />
+                <div class="mt-2">
+                    <span v-for="(image, index) in images" :key="index" class="inline-block mr-2">
+                        <img :src="URL.createObjectURL(image)" class="h-20 w-20 object-cover rounded" :alt="`${index + 1}`" />
+                        <button type="button" @click="removeImage(index)" class="text-red-500 hover:text-red-700">
+                            &times;
+                        </button>
+                    </span>
+                </div>
+            </div>
             <button type="submit" class="btn-submit">Ajouter l'événement</button>
         </form>
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import type { EventRequest } from '@/models/Event'
 import { createEvent } from '@/controllers/Events'
 import { useRouter } from 'vue-router'
@@ -47,6 +59,29 @@ const event = reactive<EventRequest>({
     category: ''
 })
 
+const images = ref<File[]>([])
+
+function handleImageChange(e: Event) {
+  const target = e.target as HTMLInputElement
+  if (!target.files) return
+  const files = Array.from(target.files)
+  // Limite à 5 images
+  if (files.length + images.value.length > 5) {
+    toast.add({
+      severity: 'warn',
+      summary: t('event.create.error.title'),
+      detail: t('event.create.error.maxImages', { max: 5 }),
+      life: 4000,
+    })
+    return
+  }
+  images.value = images.value.concat(files).slice(0, 5)
+}
+
+function removeImage(idx: number) {
+  images.value.splice(idx, 1)
+}
+
 async function submitForm() {
   // Validation simple (tu peux ajouter zod ou autre si besoin)
   if (!event.title || !event.date || !event.location) {
@@ -59,13 +94,14 @@ async function submitForm() {
     return
   }
   try {
-    const eventCreated = await createEvent({
-      title: event.title,
-      date: event.date instanceof Date ? event.date : new Date(event.date),
-      location: event.location,
-      description: event.description,
-      category: event.category,
-    })
+    const formData = new FormData()
+    formData.append('title', event.title || '')
+    formData.append('date', event.date instanceof Date ? event.date.toISOString() : new Date(event.date as any).toISOString())
+    formData.append('location', event.location || '')
+    formData.append('description', event.description || '')
+    formData.append('category', event.category || '')
+    images.value.forEach((img, i) => formData.append('images', img))
+    const eventCreated = await createEvent(formData)
 
     await router.push(`/event/${eventCreated.data.id}`)
   } catch (error) {
