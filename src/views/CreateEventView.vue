@@ -10,9 +10,41 @@
                 <label for="date" class="block mb-1 font-semibold">Date</label>
                 <input type="date" id="date" v-model="event.date" required class="input" />
             </div>
-            <div>
+            <div class="relative">
                 <label for="location" class="block mb-1 font-semibold">Lieu</label>
-                <input type="text" id="location" v-model="event.location" required class="input" placeholder="Lieu" />
+                <div class="location-input-container">
+                  <input 
+                    type="text" 
+                    id="location" 
+                    v-model="locationQuery" 
+                    @input="searchLocation"
+                    @focus="showSuggestions = locationSuggestions.length > 0"
+                    required 
+                    class="input" 
+                    placeholder="Tapez pour rechercher un lieu" 
+                    autocomplete="off"
+                  />
+                  <div v-if="isSearchingLocation" class="loading-spinner">
+                    <i class="pi pi-spin pi-spinner"></i>
+                  </div>
+                </div>
+                
+                <div v-if="showSuggestions && locationSuggestions.length > 0" class="location-suggestions">
+                  <div 
+                    v-for="suggestion in locationSuggestions" 
+                    :key="suggestion.properties?.id || Math.random()"
+                    @click="selectLocation(suggestion)"
+                    class="suggestion-item"
+                  >
+                    {{ suggestion.properties?.label || 'Label manquant' }}
+                  </div>
+                </div>
+                
+                <!-- Selected location display -->
+                <div v-if="selectedLocation" class="selected-location">
+                  <span class="location-name">📍 {{ selectedLocation.name }}</span>
+                  <button type="button" @click="clearLocation" class="clear-btn">✕</button>
+                </div>
             </div>
             <div>
                 <label for="category" class="block mb-1 font-semibold">Catégorie</label>
@@ -27,7 +59,7 @@
                 <input type="file" id="images" @change="handleImageChange" multiple class="input" />
                 <div class="mt-2">
                     <span v-for="(image, index) in images" :key="index" class="inline-block mr-2">
-                        <img :src="URL.createObjectURL(image)" class="h-20 w-20 object-cover rounded" :alt="`${index + 1}`" />
+                        <img :src="createImageUrl(image)" class="h-20 w-20 object-cover rounded" :alt="`${index + 1}`" />
                         <button type="button" @click="removeImage(index)" class="text-red-500 hover:text-red-700">
                             &times;
                         </button>
@@ -46,6 +78,7 @@ import { createEvent } from '@/controllers/Events'
 import { useRouter } from 'vue-router'
 import { useToast } from 'primevue/usetoast'
 import { useI18n } from 'vue-i18n'
+import { debouncedSearchLocations } from '@/services/geolocation'
 
 const router = useRouter()
 const toast = useToast()
@@ -60,6 +93,11 @@ const event = reactive<EventRequest>({
 })
 
 const images = ref<File[]>([])
+const selectedLocation = ref<{ lat: number; lng: number; name: string } | null>(null)
+const locationSuggestions = ref<any[]>([])
+const showSuggestions = ref(false)
+const locationQuery = ref('')
+const isSearchingLocation = ref(false)
 
 function handleImageChange(e: Event) {
   const target = e.target as HTMLInputElement
@@ -82,9 +120,61 @@ function removeImage(idx: number) {
   images.value.splice(idx, 1)
 }
 
+function createImageUrl(image: File) {
+  return URL.createObjectURL(image)
+}
+
+async function searchLocation() {
+  if (!locationQuery.value || locationQuery.value.length < 3) {
+    locationSuggestions.value = []
+    showSuggestions.value = false
+    isSearchingLocation.value = false
+    return
+  }
+  
+  isSearchingLocation.value = true
+  
+  try {
+    const results = await debouncedSearchLocations(locationQuery.value)
+    // Transforme les résultats de l'API française en format exploitable
+    locationSuggestions.value = results.features || []
+    showSuggestions.value = locationSuggestions.value.length > 0
+    console.log('Location suggestions:', locationSuggestions.value) // Debug
+  } catch (error) {
+    console.error('Error searching locations:', error)
+    locationSuggestions.value = []
+    showSuggestions.value = false
+  } finally {
+    isSearchingLocation.value = false
+  }
+}
+
+function selectLocation(location: any) {
+  const { coordinates } = location.geometry
+  const label = location.properties.label
+
+  selectedLocation.value = {
+    lat: coordinates[1],
+    lng: coordinates[0],
+    name: label
+  }
+
+  locationQuery.value = label
+  event.location = label
+  showSuggestions.value = false
+}
+
+
+function clearLocation() {
+  selectedLocation.value = null
+  locationQuery.value = ''
+  event.location = ''
+  showSuggestions.value = false
+}
+
 async function submitForm() {
   // Validation simple (tu peux ajouter zod ou autre si besoin)
-  if (!event.title || !event.date || !event.location) {
+  if (!event.title || !event.date || !selectedLocation.value) {
     toast.add({
       severity: 'error',
       summary: t('event.create.error.title'),
@@ -97,7 +187,9 @@ async function submitForm() {
     const formData = new FormData()
     formData.append('title', event.title || '')
     formData.append('date', event.date instanceof Date ? event.date.toISOString() : new Date(event.date as any).toISOString())
-    formData.append('location', event.location || '')
+    formData.append('location', selectedLocation.value.name)
+    formData.append('latitude', selectedLocation.value.lat.toString())
+    formData.append('longitude', selectedLocation.value.lng.toString())
     formData.append('description', event.description || '')
     formData.append('category', event.category || '')
     images.value.forEach((img, i) => formData.append('images', img))
@@ -105,7 +197,7 @@ async function submitForm() {
 
     await router.push(`/event/${eventCreated.data.id}`)
   } catch (error) {
-        console.error('Erreur lors de la création de l\'événement:', error)
+    console.error('Erreur lors de la création de l\'événement:', error)
   }
 }
 </script>
@@ -149,5 +241,67 @@ async function submitForm() {
 }
 .btn-submit:hover {
     background: linear-gradient(90deg, #60a5fa 0%, #6366f1 100%);
+}
+.location-suggestions {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 0.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestion-item:hover {
+  background: #f1f5f9;
+}
+
+.selected-location {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #e0f7fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.location-name {
+  font-weight: 500;
+  color: #00796b;
+}
+
+.clear-btn {
+  background: transparent;
+  border: none;
+  color: #d32f2f;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clear-btn:hover {
+  color: #c62828;
+}
+
+.location-input-container {
+    position: relative;
+}
+
+.loading-spinner {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6366f1;
 }
 </style>

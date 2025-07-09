@@ -62,6 +62,6 @@ onUnmounted(() => {
   width: 80%;
   height: 80vh;
   border-radius: 12px;
-  z-index: 1;
+  z-index: 100;
 }
 </style>
