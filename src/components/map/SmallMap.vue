@@ -1,9 +1,17 @@
 <template>
-  <div id="small-leaflet-map" :style="'height:' + (props.height ?? '500px')" class="small-map"></div>
+  <div class="relative">
+    <div v-if="isLoading" class="absolute inset-0 flex justify-center items-center bg-gray-100 rounded-lg z-10">
+      <div class="text-center">
+        <i class="pi pi-spin pi-spinner text-2xl text-blue-500 mb-2"></i>
+        <p class="text-sm text-gray-600">Chargement de la carte...</p>
+      </div>
+    </div>
+    <div id="small-leaflet-map" :style="'height:' + (props.height ?? '500px')" class="small-map"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, watch, ref } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -15,6 +23,8 @@ const props = defineProps<{
   }[]
   height: string
 }>()
+
+const isLoading = ref(true)
 
 let map: L.Map | null = null
 
@@ -87,6 +97,11 @@ function initializeMap() {
         .bindPopup(marker.name)
     })
   }
+
+  // Cache le loading après initialisation
+  setTimeout(() => {
+    isLoading.value = false
+  }, 500)
 }
 
 onUnmounted(() => {

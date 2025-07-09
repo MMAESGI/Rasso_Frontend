@@ -66,7 +66,10 @@
                     </span>
                 </div>
             </div>
-            <button type="submit" class="btn-submit">Ajouter l'événement</button>
+            <button type="submit" class="btn-submit" :disabled="isSubmitting">
+              <i v-if="isSubmitting" class="pi pi-spin pi-spinner mr-2"></i>
+              {{ isSubmitting ? 'Création en cours...' : 'Ajouter l\'événement' }}
+            </button>
         </form>
     </div>
 </template>
@@ -98,6 +101,7 @@ const locationSuggestions = ref<any[]>([])
 const showSuggestions = ref(false)
 const locationQuery = ref('')
 const isSearchingLocation = ref(false)
+const isSubmitting = ref(false)
 
 function handleImageChange(e: Event) {
   const target = e.target as HTMLInputElement
@@ -183,6 +187,9 @@ async function submitForm() {
     })
     return
   }
+  
+  isSubmitting.value = true
+  
   try {
     const formData = new FormData()
     formData.append('title', event.title || '')
@@ -195,9 +202,17 @@ async function submitForm() {
     images.value.forEach((img, i) => formData.append('images', img))
     const eventCreated = await createEvent(formData)
 
-    await router.push(`/event/${eventCreated.data.id}`)
+    await router.push(`/event/${eventCreated.id}`)
   } catch (error) {
     console.error('Erreur lors de la création de l\'événement:', error)
+    toast.add({
+      severity: 'error',
+      summary: t('event.create.error.title'),
+      detail: t('event.create.error.generic'),
+      life: 5000,
+    })
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>
@@ -241,6 +256,11 @@ async function submitForm() {
 }
 .btn-submit:hover {
     background: linear-gradient(90deg, #60a5fa 0%, #6366f1 100%);
+}
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #9ca3af;
 }
 .location-suggestions {
   position: absolute;
