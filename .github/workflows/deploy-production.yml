@@ -24,7 +24,7 @@ jobs:
 
           cd MMAESGI/production/Rasso_Frontend
 
-          git fetch --alls
+          git fetch --all
           git reset --hard origin/main
 
           echo "Deploying latest production code"
