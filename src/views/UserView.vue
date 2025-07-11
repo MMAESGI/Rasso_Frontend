@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import LoginForm from '../components/login/LoginForm.vue'
+import UserInfoForm from "../components/userInfo/UserEventsForm.vue"
 </script>
 
 <template>
   <main class="h-full">
-    <LoginForm />
+    <UserInfoForm />
   </main>
 </template>

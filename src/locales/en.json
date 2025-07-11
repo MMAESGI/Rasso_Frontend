@@ -11,7 +11,11 @@
   "homepage": {
     "navbar": {
       "card": "Map",
-      "search": "What would you like to do?"
+      "search": "What would you like to do?",
+      "account": "My account",
+      "create_event": "Create an event",
+      "login": "Login",
+      "logout": "Logout"
     },
     "popularEvents": {
       "title": "Top 10 favorite events",
@@ -33,12 +37,12 @@
     },
     "register": {
       "title": "Sign up",
-      "lastname": "Last name",
-      "firstname": "First name",
+      "lastName": "Last name",
+      "firstName": "First name",
       "username": "Display name",
       "email": "E-Mail",
       "password": "Password",
-      "confirmpassword": "Confirm password",
+      "confirmPassword": "Confirm password",
       "submit": "Sign up",
       "alreadyAccount": "Already have an account?",
       "loginLink": "Login",
@@ -47,13 +51,58 @@
         "usernameRequired": "Display name must not be empty",
         "emailInvalid": "Invalid email",
         "passwordMin": "Password must be at least 8 characters",
-        "passwordsNotMatch": "Passwords do not match"
+        "passwordsNotMatch": "Passwords do not match",
+        "toastTitle": "Error",
+        "toastMessage": "Registration failed. Please try again later."
       }
     }
   },
-    "favourites": {
+  "favourites": {
     "title": "My favorite events",
     "empty": "You don't have any favorite events yet.",
     "add": "Discover those that interest other users!"
+  },
+  "community": {
+    "gallery": {
+      "title": "Event Gallery"
+    },
+    "rankings": {
+      "title": "Rankings & Statistics",
+      "topOrganizers": "Top Event Organizers",
+      "topParticipants": "Top Event Participants",
+      "events": "events",
+      "participations": "participations"
+    },
+    "stats": {
+      "title": "Global Statistics",
+      "users": "registered users",
+      "organizers": "organizers"
+    }
+  },
+  "userInfoForm": {
+    "title": "My personal information",
+    "subtitle": "Check and change your information",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "username": "Username",
+    "validate": "Validate",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "infoValidated": "Information validated!",
+    "passwordsNotMatch": "Passwords do not match",
+    "passwordChanged": "Password changed!",
+    "fetchError": "Error fetching user data. Please try again later."
+  },
+  "userInfoEvents": {
+    "title": "Your events",
+    "edit": "Edit",
+    "noEvents": "No events found",
+    "createFirst": "Create your first event"
+  },
+  "userMenu": {
+    "account": "Account",
+    "signIn": "Log In",
+    "signOut": "Sign Out",
+    "events": "Your events"
   }
 }

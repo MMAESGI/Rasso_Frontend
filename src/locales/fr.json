@@ -11,7 +11,11 @@
   "homepage": {
     "navbar": {
       "card": "Carte",
-      "search": "Qu'est-ce que tu aimerais faire ?"
+      "search": "Qu'est-ce que tu aimerais faire ?",
+      "account": "Mon compte",
+      "create_event": "Créer un événement",
+      "login": "Connexion",
+      "logout": "Déconnexion"
     },
     "popularEvents": {
       "title": "Top 10 des événements préférés",
@@ -33,12 +37,12 @@
     },
     "register": {
       "title": "Inscription",
-      "lastname": "Nom",
-      "firstname": "Prénom",
+      "lastName": "Nom",
+      "firstName": "Prénom",
       "username": "Nom d'affichage",
       "email": "E-Mail",
       "password": "Mot de passe",
-      "confirmpassword": "Confirmez le mot de passe",
+      "confirmPassword": "Confirmez le mot de passe",
       "submit": "Inscription",
       "alreadyAccount": "Vous avez déjà un compte ?",
       "loginLink": "Connexion",
@@ -47,7 +51,9 @@
         "usernameRequired": "Le nom d'affichage ne doit pas être vide",
         "emailInvalid": "Email Invalide",
         "passwordMin": "Le mot de passe doit avoir au minimum 8 caractères",
-        "passwordsNotMatch": "Les mots de passe ne correspondent pas"
+        "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+        "toastTitle": "Erreur",
+        "toastMessage": "L'inscription a échoué. Veuillez réessayer ultérieurement."
       }
     }
   },
@@ -55,5 +61,48 @@
     "title": "Mes événements favoris",
     "empty": "Vous n'avez pas encore d'événements favoris.",
     "add": "Découvrez ceux qui intéressent les autres utilisateurs !"
+  },
+  "community": {
+    "gallery": {
+      "title": "Galerie des événements"
+    },
+    "rankings": {
+      "title": "Classements & Statistiques",
+      "topOrganizers": "Top Organisateurs d'événements",
+      "topParticipants": "Top Participants aux événements",
+      "events": "événements",
+      "participations": "participations"
+    },
+    "stats": {
+      "title": "Statistiques globales",
+      "users": "utilisateurs inscrits",
+      "organizers": "organisateurs"
+    }
+  },
+  "userInfoForm": {
+    "title": "Mes informations personnelles",
+    "subtitle": "Vérifiez et changez vos informations",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "username": "Nom d'utilisateur",
+    "validate": "Valider",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Validation mot de passe",
+    "infoValidated": "Infos validées !",
+    "passwordsNotMatch": "Les mots de passe ne correspondent pas",
+    "passwordChanged": "Mot de passe changé !",
+    "fetchError": "Erreur lors de la récupération des données utilisateur. Veuillez réessayer plus tard."
+  },
+  "userInfoEvents": {
+    "title": "Vos événements",
+    "edit": "Modifier",
+    "noEvents": "Aucun événement trouvé",
+    "createFirst": "Créer votre premier événement"
+  },
+  "userMenu": {
+    "account": "Compte",
+    "signIn": "Connexion",
+    "signOut": "Déconnexion",
+    "events": "Vos événements"
   }
 }

@@ -8,15 +8,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Badge: typeof import('primevue/badge')['default']
-    Button: typeof import('primevue/button')['default']
-    Carousel: typeof import('primevue/carousel')['default']
-    ContinueWith: typeof import('./src/components/login/ContinueWith.vue')['default']
-    copy: typeof import('./src/components/login/LoginForm copy.vue')['default']
     EventCard: typeof import('./src/components/events/EventCard.vue')['default']
     EventImages: typeof import('./src/components/events/EventImages.vue')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HeroBanner: typeof import('./src/components/hero/HeroBanner.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -36,17 +30,18 @@ declare module 'vue' {
     NavbarLogo: typeof import('./src/components/navbar/NavbarLogo.vue')['default']
     NavbarSearch: typeof import('./src/components/navbar/NavbarSearch.vue')['default']
     NavbarUserActions: typeof import('./src/components/navbar/NavbarUserActions.vue')['default']
-    Password: typeof import('primevue/password')['default']
     PopularEvents: typeof import('./src/components/events/PopularEvents.vue')['default']
     RegisterForm: typeof import('./src/components/login/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SmallMap: typeof import('./src/components/map/SmallMap.vue')['default']
-    SplitButton: typeof import('primevue/splitbutton')['default']
-    Tag: typeof import('primevue/tag')['default']
     TheFooter: typeof import('./src/components/footer/TheFooter.vue')['default']
     TheMap: typeof import('./src/components/map/TheMap.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    UserEvents: typeof import('./src/components/userInfo/UserEvents.vue')['default']
+    UserEventsForm: typeof import('./src/components/userInfo/UserEventsForm.vue')['default']
+    UserInfoEvents: typeof import('./src/components/userInfo/UserInfoEvents.vue')['default']
+    UserInfoForm: typeof import('./src/components/userInfo/UserInfoForm.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }

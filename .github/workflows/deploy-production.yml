@@ -19,11 +19,12 @@ jobs:
 
     - name: Deploy on Production VM
       run: |
-        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << 'EOF'
+        ssh -i ~/.ssh/id_ed25519 ubuntu@89.168.46.10 << EOF
           set -e
+
           cd MMAESGI/production/Rasso_Frontend
 
-          git fetch --all
+          git fetch --alls
           git reset --hard origin/main
 
           echo "Deploying latest production code"

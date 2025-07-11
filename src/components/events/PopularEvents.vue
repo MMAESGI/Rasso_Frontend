@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import EventCard from './EventCard.vue'
-import Carousel from 'primevue/carousel';
+import Carousel from 'primevue/carousel'
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { getTopEvents } from '../../controllers/Events'
+import type { Event } from '@/models/Event';
 
 const { t } = useI18n()
+const events = ref<Event[]>([]);
+const isLoading = ref(true);
 
-const events = ref([
-  { id: 1, title: 'Event 1' },
-  { id: 2, title: 'Event 2' },
-  { id: 3, title: 'Event 3' },
-  { id: 4, title: 'Event 4' },
-  { id: 5, title: 'Event 5' },
-  { id: 6, title: 'Event 6' },
-  { id: 7, title: 'Event 7' },
-  { id: 8, title: 'Event 8' },
-])
+onMounted(() => {
+  getTopEvents().then((response) => {
+    events.value = response
+  }).catch((error) => {
+    console.error('Error fetching events:', error)
+  }).finally(() => {
+    isLoading.value = false
+  })
+})
 
 const isMobile = ref(false)
 
@@ -37,27 +40,43 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="p-4 pt-10 max-w-7xl mx-auto">
-    <p class="text-4xl font-bold mb-4">{{ t('homepage.popularEvents.title') }}</p>
-    <p class="mb-4">{{ t('homepage.popularEvents.description') }}</p>
+  <div v-if="isLoading" class="flex justify-center items-center py-20">
+    <div class="text-center">
+      <i class="pi pi-spin pi-spinner text-4xl text-blue-500 mb-4"></i>
+      <p class="text-lg text-gray-600">Chargement des événements populaires...</p>
+    </div>
   </div>
+  
+  <div v-else>
+    <div class="p-4 pt-10 max-w-7xl mx-auto">
+      <p class="text-4xl font-bold mb-4">{{ t('homepage.popularEvents.title') }}</p>
+      <p class="mb-4">{{ t('homepage.popularEvents.description') }}</p>
+    </div>
 
-  <div class="border-b-2 border-gray-200 mb-4"></div>
+    <div class="border-b-2 border-gray-200 mb-4"></div>
 
-  <div v-if="!isMobile" class="prime-carrousel p-4 mx-auto">
-    <Carousel :value="events" :numVisible="4" :numScroll="4" circular>
-      <template #item="event">
-        <div class="flex justify-center">
+    <div v-if="!isMobile" class="prime-carrousel p-4 mx-auto">
+      <Carousel v-if="events.length > 1" :value="events" :numVisible="4" :numScroll="4" circular>
+        <template #item="event">
+          <div class="flex justify-center">
+            <EventCard :event="event.data" />
+          </div>
+        </template>
+      </Carousel>
+      
+      <!-- Affichage spécial pour un seul événement -->
+      <div v-else-if="events.length === 1" class="single-event-container">
+        <div class="single-event-wrapper">
+          <EventCard :event="events[0]" />
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="mobile-events-container">
+      <div class="mobile-events-scroll">
+        <div v-for="event in events" :key="event.id" class="mobile-event-item">
           <EventCard :event="event" />
         </div>
-      </template>
-    </Carousel>
-  </div>
-
-  <div v-else class="mobile-events-container">
-    <div class="mobile-events-scroll">
-      <div v-for="event in events" :key="event.id" class="mobile-event-item">
-        <EventCard :event="event" />
       </div>
     </div>
   </div>
@@ -91,5 +110,4 @@ onUnmounted(() => {
   flex: 0 0 auto;
   max-width: 70%;
 }
-
 </style>

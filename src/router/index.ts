@@ -5,6 +5,11 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import EventView from '@/views/EventView.vue'
 import FavouritesView from '@/views/FavouritesView.vue'
+import CommunityView from '@/views/CommunityView.vue'
+import UserView from '@/views/UserView.vue'
+import CreateEventView from '@/views/CreateEventView.vue'
+import UserInfoEvents from '@/views/UserEventsView.vue'
+import EditEventView from '@/views/EditEventView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,24 +33,49 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: "/login",
-      name:"login",
-      component: LoginView
+      path: '/login',
+      name: 'login',
+      component: LoginView,
     },
     {
-      path: "/register",
-      name:"register",
-      component: RegisterView
+      path: '/register',
+      name: 'register',
+      component: RegisterView,
     },
     {
-      path: "/event", // A changer en /event/{id} probablement
-      name: "event",
-      component: EventView
+      path: '/event/:id',
+      name: 'event',
+      component: EventView,
     },
     {
-      path: "/favourites",
-      name:"favourites",
+      path: '/favourites',
+      name: 'favourites',
       component: FavouritesView,
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: CommunityView,
+    },
+    {
+      path: "/user",
+      name:"userInfo",
+      component: UserView,
+    },
+    {
+      path: '/create_event',
+      name: 'create_event',
+      component: CreateEventView,
+    },
+    {
+      path: '/edit_event/:id',
+      name: 'edit_event',
+      component: EditEventView,
+    },
+    {
+      path:"/user/events",
+      name: "userEvents",
+      component: UserInfoEvents,
     }
   ],
 })
