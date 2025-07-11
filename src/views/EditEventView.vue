@@ -92,7 +92,6 @@ import type { EventRequest, Event } from '@/models/Event'
 import { updateEvent, getEventById } from '@/controllers/Events'
 import { useRouter, useRoute } from 'vue-router'
 import { useToast } from 'primevue/usetoast'
-import { useI18n } from 'vue-i18n'
 import { debouncedSearchLocations } from '@/services/geolocation'
 
 const router = useRouter()
