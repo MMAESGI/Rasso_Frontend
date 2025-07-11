@@ -199,7 +199,7 @@ async function submitForm() {
     formData.append('longitude', selectedLocation.value.lng.toString())
     formData.append('description', event.description || '')
     formData.append('category', event.category || '')
-    images.value.forEach((img, i) => formData.append('images', img))
+    images.value.forEach((img) => formData.append('images', img))
     const eventCreated = await createEvent(formData)
 
     await router.push(`/event/${eventCreated.id}`)

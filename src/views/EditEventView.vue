@@ -98,7 +98,6 @@ import { debouncedSearchLocations } from '@/services/geolocation'
 const router = useRouter()
 const route = useRoute()
 const toast = useToast()
-const { t } = useI18n()
 
 const eventId = route.params.id as string
 const isLoading = ref(true)
