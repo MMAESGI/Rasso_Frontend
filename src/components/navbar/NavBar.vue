@@ -64,7 +64,7 @@ function toggle(event: Event) {
 </script>
 
 <template>
-  <nav class="bg-white shadow-md w-full md:fixed relative" style="z-index: 9">
+  <nav class="bg-white shadow-md w-full md:fixed relative" style="z-index: 1000">
     <div class="mx-auto px-4 max-w-[100vw]">
       <div class="grid grid-cols-12 h-20">
         <!-- Mobile menu button - takes full width on mobile, hidden on md+ -->

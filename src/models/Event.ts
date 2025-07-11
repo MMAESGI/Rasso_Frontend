@@ -10,6 +10,7 @@ export type Event = {
     longitude?: number;
     category?: string;
     isFavorite?: boolean;
+    imageUrls?: string[];
 }
 
 export type EventRequest = {

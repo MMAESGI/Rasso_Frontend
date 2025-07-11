@@ -15,6 +15,20 @@ import en from './locales/en.json'
 
 import ToastService from 'primevue/toastservice'
 
+import { checkAndCleanExpiredToken } from '@/controllers/Login'
+
+checkAndCleanExpiredToken()
+
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    checkAndCleanExpiredToken()
+  }
+})
+
+setInterval(() => {
+  checkAndCleanExpiredToken()
+}, 5 * 60 * 1000)
+
 const app = createApp(App)
 
 const Noir = definePreset(Aura, {

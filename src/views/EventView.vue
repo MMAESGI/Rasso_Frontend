@@ -7,6 +7,7 @@ import { getEventById } from '@/controllers/Events'
 import type { Event } from '@/models/Event'
 
 const eventInfo = ref<Event | null>(null)
+const isLoading = ref(true)
 const locations = ref<{ lat: number; lng: number; name: string }>({
   lat: 48.8566, // Default latitude (Paris)
   lng: 2.3522, // Default longitude (Paris)
@@ -27,6 +28,8 @@ onMounted(() => {
     }
   }).catch((error) => {
     console.error('Error fetching event:', error)
+  }).finally(() => {
+    isLoading.value = false
   })
 });
 
@@ -43,10 +46,7 @@ function formatDate(date: string | Date | undefined) {
 // Helper for images fallback
 function getImages(): string[] {
   // On tente d'utiliser une propriété imageUrl si elle existe, sinon fallback
-  if (eventInfo.value && 'imageUrl' in eventInfo.value && (eventInfo.value).imageUrl) {
-    return [(eventInfo.value).imageUrl]
-  }
-  return [
+  return eventInfo.value?.imageUrls || [
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
     'https://media.formula1.com/content/dam/fom-website/races/2025/race-listing/Japan.jpg',
@@ -57,7 +57,14 @@ function getImages(): string[] {
 </script>
 
 <template>
-  <div class="md:px-80 px-5 py-10">
+  <div v-if="isLoading" class="flex justify-center items-center min-h-screen">
+    <div class="text-center">
+      <i class="pi pi-spin pi-spinner text-4xl text-blue-500 mb-4"></i>
+      <p class="text-lg text-gray-600">Chargement de l'événement...</p>
+    </div>
+  </div>
+  
+  <div v-else class="md:px-80 px-5 py-10">
     <EventImages :images="getImages()" class="mb-10" />
     <div class="flex w-full flex-col md:flex-row">
       <div class="md:w-2/3 md:pr-10">

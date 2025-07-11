@@ -8,13 +8,15 @@ import type { Event } from '@/models/Event';
 
 const { t } = useI18n()
 const events = ref<Event[]>([]);
+const isLoading = ref(true);
 
 onMounted(() => {
   getTopEvents().then((response) => {
     events.value = response
-    console.log(response)
   }).catch((error) => {
     console.error('Error fetching events:', error)
+  }).finally(() => {
+    isLoading.value = false
   })
 })
 
@@ -38,27 +40,43 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="p-4 pt-10 max-w-7xl mx-auto">
-    <p class="text-4xl font-bold mb-4">{{ t('homepage.popularEvents.title') }}</p>
-    <p class="mb-4">{{ t('homepage.popularEvents.description') }}</p>
+  <div v-if="isLoading" class="flex justify-center items-center py-20">
+    <div class="text-center">
+      <i class="pi pi-spin pi-spinner text-4xl text-blue-500 mb-4"></i>
+      <p class="text-lg text-gray-600">Chargement des événements populaires...</p>
+    </div>
   </div>
+  
+  <div v-else>
+    <div class="p-4 pt-10 max-w-7xl mx-auto">
+      <p class="text-4xl font-bold mb-4">{{ t('homepage.popularEvents.title') }}</p>
+      <p class="mb-4">{{ t('homepage.popularEvents.description') }}</p>
+    </div>
 
-  <div class="border-b-2 border-gray-200 mb-4"></div>
+    <div class="border-b-2 border-gray-200 mb-4"></div>
 
-  <div v-if="!isMobile" class="prime-carrousel p-4 mx-auto">
-    <Carousel :value="events" :numVisible="4" :numScroll="4" circular>
-      <template #item="event">
-        <div class="flex justify-center">
-          <EventCard :event="event.data" />
+    <div v-if="!isMobile" class="prime-carrousel p-4 mx-auto">
+      <Carousel v-if="events.length > 1" :value="events" :numVisible="4" :numScroll="4" circular>
+        <template #item="event">
+          <div class="flex justify-center">
+            <EventCard :event="event.data" />
+          </div>
+        </template>
+      </Carousel>
+      
+      <!-- Affichage spécial pour un seul événement -->
+      <div v-else-if="events.length === 1" class="single-event-container">
+        <div class="single-event-wrapper">
+          <EventCard :event="events[0]" />
         </div>
-      </template>
-    </Carousel>
-  </div>
+      </div>
+    </div>
 
-  <div v-else class="mobile-events-container">
-    <div class="mobile-events-scroll">
-      <div v-for="event in events" :key="event.id" class="mobile-event-item">
-        <EventCard :event="event" />
+    <div v-else class="mobile-events-container">
+      <div class="mobile-events-scroll">
+        <div v-for="event in events" :key="event.id" class="mobile-event-item">
+          <EventCard :event="event" />
+        </div>
       </div>
     </div>
   </div>

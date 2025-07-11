@@ -94,7 +94,10 @@
     "fetchError": "Erreur lors de la récupération des données utilisateur. Veuillez réessayer plus tard."
   },
   "userInfoEvents": {
-    "title": "Vos événements"
+    "title": "Vos événements",
+    "edit": "Modifier",
+    "noEvents": "Aucun événement trouvé",
+    "createFirst": "Créer votre premier événement"
   },
   "userMenu": {
     "account": "Compte",
