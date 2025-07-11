@@ -18,7 +18,7 @@ onMounted(() => {
   const route = useRoute()
   const eventId = route.params.id
   getEventById(eventId.toString()).then((event) => {
-    eventInfo.value = event.data;
+    eventInfo.value = event;
     if (eventInfo.value) {
       locations.value = {
         lat: eventInfo.value.latitude ?? 48.8566,

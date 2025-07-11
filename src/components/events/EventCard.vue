@@ -4,7 +4,7 @@
       <RouterLink :to="`/event/${event.id}`">
         <img
           class="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-125"
-          :src="event.imageUrls?.[0] || 'https://via.placeholder.com/300'"
+          :src="event.imageUrls?.[0] || 'https://picsum.photos/seed/picsum/200/300'"
           :alt="event.title"
         />
       </RouterLink>

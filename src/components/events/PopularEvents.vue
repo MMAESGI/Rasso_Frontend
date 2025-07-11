@@ -13,7 +13,6 @@ const isLoading = ref(true);
 onMounted(() => {
   getTopEvents().then((response) => {
     events.value = response
-    console.log(response)
   }).catch((error) => {
     console.error('Error fetching events:', error)
   }).finally(() => {

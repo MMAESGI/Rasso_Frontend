@@ -93,8 +93,11 @@
     "passwordChanged": "Password changed!",
     "fetchError": "Error fetching user data. Please try again later."
   },
-    "userInfoEvents": {
-    "title": "Your events"
+  "userInfoEvents": {
+    "title": "Your events",
+    "edit": "Edit",
+    "noEvents": "No events found",
+    "createFirst": "Create your first event"
   },
   "userMenu": {
     "account": "Account",
