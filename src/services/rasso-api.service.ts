@@ -6,7 +6,8 @@ class RassoApiService {
   private readonly client: RassoApiClient;
 
   constructor() {
-    this.client = new RassoApiClient('http://localhost:5048', jwtAxios);
+    const baseUrl = import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '');
+    this.client = new RassoApiClient(baseUrl, jwtAxios);
   }
 
   home(cancelToken?: CancelToken) {
