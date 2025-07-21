@@ -1,24 +1,27 @@
 <script setup lang="ts">
 import EventImages from '@/components/events/EventImages.vue'
 import SmallMap from '@/components/map/SmallMap.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getEventById } from '@/controllers/Events'
 import type { Event } from '@/models/Event'
 
 const eventInfo = ref<Event | null>(null)
 const isLoading = ref(true)
+const route = useRoute()
 const locations = ref<{ lat: number; lng: number; name: string }>({
   lat: 48.8566, // Default latitude (Paris)
   lng: 2.3522, // Default longitude (Paris)
   name: 'Paris, France', // Default location name
 })
 
-onMounted(() => {
-  const route = useRoute()
-  const eventId = route.params.id
-  getEventById(eventId.toString()).then((event) => {
-    eventInfo.value = event;
+// Function to load event data
+async function loadEvent(eventId: string) {
+  isLoading.value = true
+  try {
+    const event = await getEventById(eventId)
+    eventInfo.value = event
+
     if (eventInfo.value) {
       locations.value = {
         lat: eventInfo.value.latitude ?? 48.8566,
@@ -26,11 +29,25 @@ onMounted(() => {
         name: eventInfo.value.location ?? 'Paris, France',
       }
     }
-  }).catch((error) => {
+  } catch (error) {
     console.error('Error fetching event:', error)
-  }).finally(() => {
+  } finally {
     isLoading.value = false
-  })
+  }
+}
+
+onMounted(() => {
+  window.scrollTo(0, 0)
+  const eventId = route.params.id
+  loadEvent(eventId.toString())
+})
+
+// Watch for route changes to reload event data
+watch(() => route.params.id, (newId) => {
+  if (newId) {
+    window.scrollTo(0, 0)
+    loadEvent(newId.toString())
+  }
 });
 
 function formatDate(date: string | Date | undefined) {

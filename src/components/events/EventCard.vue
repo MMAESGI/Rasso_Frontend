@@ -34,13 +34,15 @@ const formattedDate = props.event.date
 
 <style scoped>
 .event-card {
-  width: 90%;
-  margin: 1rem;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
   cursor: pointer;
 }
 
 .card-image {
   aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 .card-info {
@@ -71,8 +73,9 @@ const formattedDate = props.event.date
 
 @media (max-width: 768px) {
   .event-card {
-    max-width: 75%;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 250px;
+    margin: 0;
   }
 
   .card-image {

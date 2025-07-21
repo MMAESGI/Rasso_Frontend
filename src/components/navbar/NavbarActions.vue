@@ -30,9 +30,19 @@ async function getLocationName(pos: GeolocationPosition) {
     city.value = ''
     return
   }
-
-  city.value =
-    res.address.city ?? res.address.town ?? res.address.municipality ?? res.address.country ?? ''
+  
+  if (res.features && res.features.length > 0) {
+    const feature = res.features[0]
+    const properties = feature.properties
+    
+    console.log('Properties:', properties)
+    
+    city.value = properties.city ?? properties.municipality ?? properties.postcode ?? ''
+    
+    console.log('City extracted:', city.value)
+  } else {
+    city.value = ''
+  }
 
   if (city.value) {
     sessionStorage.setItem('userCity', city.value)

@@ -202,7 +202,7 @@ async function submitForm() {
     images.value.forEach((img) => formData.append('images', img))
     const eventCreated = await createEvent(formData)
 
-    await router.push(`/event/${eventCreated.id}`)
+    await router.push(`/event/${eventCreated.data.id}`)
   } catch (error) {
     console.error('Erreur lors de la création de l\'événement:', error)
     toast.add({

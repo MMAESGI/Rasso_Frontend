@@ -151,3 +151,21 @@ export async function updateEvent(eventId: string, eventData: EventRequest | For
     throw error
   }
 }
+
+export async function getEventsBySearch(q: string): Promise<Event[]> {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/events/search`, {
+      params: { q },
+    });
+    const events: Event[] = [];
+    if (response.data) {
+      response.data.data.forEach((event: unknown) => {
+        events.push(event as Event);
+      });
+    }
+    return events;
+  } catch (error) {
+    console.error('Error fetching events by search:', error);
+    throw error;
+  }
+}

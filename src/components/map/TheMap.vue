@@ -66,7 +66,7 @@ function initializeMap(lat: number, lng: number) {
     return
   }
 
-  map = L.map('leaflet-map').setView([lat, lng], 15)
+  map = L.map('leaflet-map').setView([lat, lng], 13)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
   }).addTo(map)

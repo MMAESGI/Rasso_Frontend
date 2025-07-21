@@ -60,7 +60,8 @@
   "favourites": {
     "title": "My favorite events",
     "empty": "You don't have any favorite events yet.",
-    "add": "Discover those that interest other users!"
+    "add": "Discover those that interest other users!",
+    "loading": "Loading favorite events..."
   },
   "community": {
     "gallery": {

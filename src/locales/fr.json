@@ -60,7 +60,8 @@
   "favourites": {
     "title": "Mes événements favoris",
     "empty": "Vous n'avez pas encore d'événements favoris.",
-    "add": "Découvrez ceux qui intéressent les autres utilisateurs !"
+    "add": "Découvrez ceux qui intéressent les autres utilisateurs !",
+    "loading": "Chargement des événements favoris..."
   },
   "community": {
     "gallery": {

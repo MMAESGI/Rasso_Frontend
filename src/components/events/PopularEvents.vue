@@ -56,9 +56,9 @@ onUnmounted(() => {
     <div class="border-b-2 border-gray-200 mb-4"></div>
 
     <div v-if="!isMobile" class="prime-carrousel p-4 mx-auto">
-      <Carousel v-if="events.length > 1" :value="events" :numVisible="4" :numScroll="4" circular>
+      <Carousel v-if="events.length > 1" :value="events" :numVisible="3" :numScroll="3" circular>
         <template #item="event">
-          <div class="flex justify-center">
+          <div class="carousel-item-wrapper">
             <EventCard :event="event.data" />
           </div>
         </template>
@@ -84,7 +84,37 @@ onUnmounted(() => {
 
 <style scoped>
 .prime-carrousel {
-  width: 90vw;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.carousel-item-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 0 0.5rem;
+  width: 90%;
+  height: 400px;
+}
+
+.carousel-item-wrapper :deep(.event-card) {
+  width: 260px !important;
+  max-width: 260px !important;
+  height: 380px !important;
+}
+
+.carousel-item-wrapper :deep(.card-image) {
+  height: 300px !important;
+  width: 300px !important;
+}
+
+.single-event-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.single-event-wrapper {
+  max-width: 300px;
 }
 
 .mobile-events-container {
@@ -108,6 +138,10 @@ onUnmounted(() => {
 
 .mobile-event-item {
   flex: 0 0 auto;
-  max-width: 70%;
+  width: 250px;
+}
+
+.mobile-event-item:last-child {
+  margin-right: 0;
 }
 </style>

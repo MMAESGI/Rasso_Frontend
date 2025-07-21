@@ -2,7 +2,13 @@ async function reverseGeocode(lat: number, lon: number) {
   const response = await fetch(
     `https://api-adresse.data.gouv.fr/reverse/?lon=${lon}&lat=${lat}`
   )
-  return await response.json()
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`)
+  }
+  
+  const data = await response.json()
+  return data
 }
 
 
@@ -25,12 +31,21 @@ function debounce<T extends (...args: any[]) => Promise<any>>(func: T, delay: nu
 }
 
 async function searchLocations(query: string) {
+  console.log('Searching locations for:', query)
   if (!query || query.length < 3) return []
 
   const response = await fetch(
     `https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(query)}&limit=5`
   )
-  return await response.json()
+  console.log('Search response status:', response.status)
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`)
+  }
+  
+  const data = await response.json()
+  console.log('Search data:', data)
+  return data
 }
 
 // Debounced version of searchLocations
